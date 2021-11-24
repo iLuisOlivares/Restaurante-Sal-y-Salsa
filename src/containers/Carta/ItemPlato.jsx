@@ -5,56 +5,35 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function ItemPlato({ platoId, nombre, descripcion, precio, imagen }) {
-  // const eliminarItem = (id) => {
-  //   const lista = respuestas.filter((item) => item.id !== id);
-  //   eliminarComentarios(cliente);
-  //   console.log(lista);
-  //   if (lista !== "") {
-  //     cambiar(lista);
-  //   } else {
-  //     cambiar([]);
-  //   }
-  // };
-
-  // const eliminarComentarios = async (id) => {
-  //   const resp = await fetch(
-  //     "https://61955d6c74c1bd00176c6d13.mockapi.io/api/v1/comments/" + id,
-  //     {
-  //       method: "DELETE",
-  //     }
-  //   );
-  //   return resp.ok ? "Borrado" : "No se elimino";
-  // };
-
+  // Detele Plato
   const eliminarPlato = async (id) => {
     const MySwal = withReactContent(Swal);
 
     MySwal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir este cambio",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+      confirmButtonText: "Si, eliminalo",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        await fetch(
+          "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato/" +
+            id,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
+          })
+          .catch((err) => console.log(err));
       }
     });
-
-    // await fetch(
-    //   "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato/" +
-    //     id,
-    //   {
-    //     method: "DELETE",
-    //   }
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   return (
