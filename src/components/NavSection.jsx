@@ -10,7 +10,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
   const auth = useAuth();
   return (
     <Fragment>
-      {isLittle == false ? (
+      {isLittle === false ? (
         <Fragment>
           <section className="hamburger" onClick={() => modalControl()}>
             <div className="line"></div>
@@ -52,6 +52,26 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                       Actualizar Menú
                     </NavLink>
                   </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items"
+                      exact
+                      to="/admin/Reservas"
+                      activeclass="active"
+                    >
+                      Reservas
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items"
+                      exact
+                      to="/admin/Comentarios"
+                      activeclass="active"
+                    >
+                      Comentarios
+                    </NavLink>
+                  </li>
                 </>
               )}
 
@@ -71,7 +91,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="select-items" to="mapa">
+                <NavLink className="select-items" to="/mapa">
                   Mapa
                 </NavLink>
               </li>
@@ -106,7 +126,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
             </ul>
             <ul>
               <li className="nav-item">
-                <NavLink className="icono-1 select-item" to="carrito">
+                <NavLink className="icono-1 select-item" to="/carrito">
                   <FontAwesomeIcon icon={faShoppingBasket} />
                 </NavLink>
               </li>
