@@ -2,11 +2,13 @@ import React from 'react'
 import { Fragment, useState, useEffect } from "react";
 import HistoriadAdmin from './HistoriadAdmin';
 import EmpleadoAdmin from './EmpleadoAdmin';
+import BootsModal from './BootsModal';
 
 function NosotrosAdmin() {
 
     const [empleados, setEmpleados] = useState([]);
     const [restaurante, setRestaurante] = useState([]);
+    
   
     useEffect(() => {
       obtenerEmpleados();
@@ -71,7 +73,7 @@ function NosotrosAdmin() {
           <div className="row pb-5">
             <div className="col-12  col-lg-12">
               {/* <!-- sub-row1 -->  */}
-              <div className="m-2 row1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
+              <div className="m-2 row 1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
                 {empleados.map((item) => (
                   <EmpleadoAdmin
                     key={item.id}
@@ -83,7 +85,7 @@ function NosotrosAdmin() {
                 ))}
                     <div  className="d-flex justify-content-end">
     
-            <button className="m-1 text-light btn btn-success ">Nuevo Empleado</button>
+
              </div>
               </div>
               
@@ -91,7 +93,8 @@ function NosotrosAdmin() {
           </div>
         </div>
       </section>
-            
+
+                <BootsModal></BootsModal>
         </div>
     )
 }

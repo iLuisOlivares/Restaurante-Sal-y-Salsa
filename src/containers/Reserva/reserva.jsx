@@ -115,7 +115,7 @@ const Reserva = () => {
       asunto: asunto.campo,
       correo: correo.campo,
       celular: celular.campo,
-      cantidad_personas: 3,
+      cantidad_personas: numeroPersonas.campo,
       nombre_referencia: nombre.campo
       };
 

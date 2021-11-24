@@ -1,8 +1,6 @@
 import React from 'react'
 
-const styleUs = {
-    width: "18rem"
-}
+
 
 function EmpleadoAdmin({id, nombre,foto,descripcion,cargo}) {
     return (
@@ -15,10 +13,10 @@ function EmpleadoAdmin({id, nombre,foto,descripcion,cargo}) {
     //       </div>
     //     </div>
     //   </div>
-    <div className="card my-3" style={{maxWidth: "800px"}}>
+    <div className="m-3 card my-3" style={{maxWidth: "600px"}}>
   <div className="row g-0">
-    <div className="col-md-4">
-      <img src={foto} className="img-fluid rounded-start" alt="..."/>
+    <div className="col-md-3">
+      <img style={{objectFit:"cover", width:"126px", height:"126px"}} src={foto} className="img-fluid rounded-start" alt="..."/>
     </div>
     <div className="col-md-8">
       <div className="card-body">
