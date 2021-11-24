@@ -65,7 +65,6 @@ const servicios = [
 
 const Mapa = () => (
   <section className="mb-5 container">
-
     <div className="col-12 text-center p-5 p-lg-5 pb-lg-4 m-ms-1 p-ms-2">
       <h2 className="text fw-bold">Mapa del sitio</h2>
       <hr className="divider" />
@@ -84,36 +83,6 @@ const Mapa = () => (
         ))}
       </div>
     </div>
-    {/* 
-    <section className="o-mapa-content">
-      <ul className="o-mapa-list">
-        <li>
-          <Link className="o-mapa-item select-color" to="/">
-            <b>Inicio</b>
-          </Link>
-        </li>
-        <li>
-          <Link className="o-mapa-item select-color" to="/nosotros">
-            <b>Nosotros</b>
-          </Link>
-        </li>
-        <li>
-          <Link className="o-mapa-item select-color" to="/carta">
-            <b>Menú</b>
-          </Link>
-        </li>
-        <li>
-          <Link className="o-mapa-item select-color" to="/servicios">
-            <b>Servicos</b>
-          </Link>
-        </li>
-        <li>
-          <Link className="o-mapa-item select-color" to="/reserva">
-            <b>Contáctanos</b>
-          </Link>
-        </li>
-      </ul>
-    </section> */}
   </section>
 );
 

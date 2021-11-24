@@ -35,3 +35,20 @@ code {
 .MuiBox-root {
   width: 90vw !important;
 }
+
+.img-update-admin {
+  width: 10%;
+  height: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+
+.container-plato-dp {
+  max-width: 16rem;
+}
+
+.container-plato-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
