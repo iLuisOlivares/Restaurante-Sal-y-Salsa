@@ -3,21 +3,26 @@ import { useState, useEffect } from "react";
 import ItemComentario from "./itemComentario";
 
 function ComentariosAdmin() {
-  const [respuestas, cambiarRespuetas] = useState([]);
 
-  useEffect(() => {
-    console.log("si");
-    obtenerComentarios();
-  }, []);
 
-  const obtenerComentarios = async () => {
-    const data = await fetch(
-      "https://61955d6c74c1bd00176c6d13.mockapi.io/api/v1/comments"
-    );
-    const resp = await data.json();
-    console.log(resp);
-    cambiarRespuetas(resp);
-  };
+    const [respuestas, cambiarRespuetas] = useState([]);
+
+    useEffect(()=>{
+      console.log('si');
+      obtenerComentarios();
+    
+    }, [])
+
+    
+
+    const obtenerComentarios = async () =>{
+      const data = await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/comentario');
+      const resp = await data.json();
+      console.log(resp);
+      cambiarRespuetas(resp)
+    }
+    
+
 
   return (
     <div className="m-3">
@@ -32,7 +37,9 @@ function ComentariosAdmin() {
               </div>
 
               <div className="body-r">
-                {respuestas.map((resp) => (
+
+                {/* {
+                respuestas.map((resp) => (
                   <ItemComentario
                     key={resp.id}
                     cliente={resp.id}
@@ -42,6 +49,28 @@ function ComentariosAdmin() {
                     cambiar={cambiarRespuetas}
                   ></ItemComentario>
                 ))}
+ */}
+               
+                {
+                    respuestas.map((resp) =>(
+
+                        <ItemComentario
+                        key  = {resp.id}
+                        idComentario = {resp.id}
+                        cliente = {resp.cliente_id}
+                        comentario = {resp.comentario}
+                        nombre = {resp.nombre_completo}
+                        fecha ={resp.fecha}
+                        respuestas = {respuestas}
+                        cambiar = {cambiarRespuetas}
+                        >
+                        </ItemComentario>
+
+                    )
+                    )
+                }
+
+
               </div>
             </div>
           </div>
