@@ -4,7 +4,14 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-function ItemPlato({ platoId, nombre, descripcion, precio, imagen }) {
+function ItemPlato({
+  platoId,
+  nombre,
+  descripcion,
+  precio,
+  imagen,
+  funGetPlato,
+}) {
   // Detele Plato
   const eliminarPlato = async (id) => {
     const MySwal = withReactContent(Swal);
@@ -30,7 +37,9 @@ function ItemPlato({ platoId, nombre, descripcion, precio, imagen }) {
           .then((response) => response.json())
           .then((data) => {
             Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
+            funGetPlato();
           })
+
           .catch((err) => console.log(err));
       }
     });

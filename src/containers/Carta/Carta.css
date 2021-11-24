@@ -135,3 +135,45 @@
   box-shadow: 0 0 3px rgba(182, 6, 6, 0.8), 0 0 3px rgba(182, 6, 6, 0.8),
     0 0 3px rgba(182, 6, 6, 0.8);
 }
+
+/* update carta admin styles */
+.create-platos-container {
+  display: flex;
+  max-width: 500px;
+  flex-direction: column;
+  margin: auto;
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.input-create-platos {
+  width: 100%;
+  margin-top: 10px;
+  font-family: var(global-font);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+}
+
+.title-admin {
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn-cam {
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+  padding: 0.3rem;
+  margin-top: 1rem;
+}
