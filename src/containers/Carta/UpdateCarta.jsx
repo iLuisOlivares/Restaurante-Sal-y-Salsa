@@ -18,12 +18,9 @@ class UpdateCarta extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.getPlatos();
-  // }
-
   componentWillMount() {
     this.getPlatos();
+    // alert("traer platos");
   }
 
   getPlatos = async () => {
@@ -57,8 +54,11 @@ class UpdateCarta extends Component {
 
       this.postPlato();
 
-      Swal.fire("Agregado!", "El plato ha sido agregado.", "success");
-      return alert("Confirmado");
+      Swal.fire("¡Agregado!", "El plato ha sido agregado.", "success");
+
+      this.getPlatos();
+
+      return console.log("Confirmado");
     } else {
       console.log("NO FUNCIONA");
     }
@@ -89,8 +89,6 @@ class UpdateCarta extends Component {
     );
     const resp = await response.json();
     console.log(resp);
-    alert(resp);
-    // this.getPlatos();
   }
 
   render() {
@@ -139,7 +137,7 @@ class UpdateCarta extends Component {
             className="input-create-platos"
             required
           />
-          <button className="btn-cam" onClick={this.verifyInputs}>
+          <button type="button" className="btn-cam" onClick={this.verifyInputs}>
             Crear nuevo plato
           </button>
         </form>

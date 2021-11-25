@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import UseAuth from "../Login/auth/useAuth";
+import UseAuth from "./auth/useAuth";
 import "./login.css";
 
 export default function Login() {
@@ -11,6 +11,15 @@ export default function Login() {
   const handleLogin = () => {
     auth.login();
     history.push("/inicioAdmin");
+  };
+
+  const getUser = () => {
+    fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/cliente`
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -28,8 +37,7 @@ export default function Login() {
           placeholder="Contraseña"
           className="input-formulario"
         />
-
-        <button onClick={handleLogin} className="btn-r">
+        <button type="button" onClick={handleLogin} className="btn-r">
           Entrar
         </button>
       </form>
