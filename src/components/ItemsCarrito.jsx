@@ -16,6 +16,7 @@ import '../containers/Carrito/carrito.css';
 function ItemsCarrito({
   nombre,
   descripcion,
+  imagen,
   precio,
   id,
   cantidad,
@@ -56,7 +57,6 @@ function ItemsCarrito({
     })
   }
 
-
   const eliminarItem = (id) => {
     const lista = carrito.filter((item) => item.id !== id);
     console.log(lista);
@@ -70,32 +70,6 @@ function ItemsCarrito({
     }
  
   };
-
- 
-  
-  // const validacion = (e) => {
-  //   const lista = [];
-  //   console.log(e.target.id);
-  //   for (const iterator of carrito) {
-  //     if (iterator.id == e.target.id) {
-  //       iterator.cantidad = e.target.value;
-  //     }
-  //     lista.push(iterator);
-  //   }
-  //   console.log(lista);
-  //   setCarrito(lista);
-  // };
-
-  // const onChange = (id, e) => {
-  //   const lista = [];
-  //   for (const iterator of carrito) {
-  //     if (iterator.id === id) {
-  //       iterator.cantidad = e.target.value;
-  //     }
-  //     lista.push(iterator);
-  //   }
-  //   setCarrito(lista);
-  // };
 
   const modificarItem = (e) => {
     const carritoList = [];
@@ -113,7 +87,7 @@ function ItemsCarrito({
     <div className="card mb-3" data-id={id}>
       <div className="row g-0">
         <ContainerImgStyled className="col-md-4">
-          <ImagenStyled src={imagen} className="rounded-center" alt="..." />
+          <ImagenStyled src={imagen} className="rounded-center" alt={descripcion} />
         </ContainerImgStyled>
         <div className="col-md-8">
           <div className="card-body">

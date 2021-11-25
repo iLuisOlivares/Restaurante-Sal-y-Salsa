@@ -22,15 +22,12 @@ const Carrito = () => {
       .then((data) => {
         console.log(data);
         // data.map()
-        // setCarrito(data);
+        setCarrito(data);
       })
       .catch((err) => console.log(err));
   };
 
-  // useEffect(() => {
-  //   alert("Primero");
-  //   // localStorage.setItem("Carrito", JSON.stringify(carrito));
-  // }, [carrito]);
+ 
 
   return (
     <div className="my-5 container-xxl" style={{ minHeight: "74vh" }}>
