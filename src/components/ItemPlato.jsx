@@ -50,20 +50,21 @@ const ItemPlato = ({
   };
 
   const postData = (id) => {
-    let amount = parseInt(document.getElementById("id_cantidad").value);
-    console.log("Agregar");
-    const item = {
-      nombre: tituloPlato,
-      id: idPlato,
-      precio: precioPlato,
-      imagen: imgPlato,
-      descripcion: descripcionPlato,
-      cantidad: amount,
-    };
-    const lista = carrito.filter((item) => item.id !== id);
+    // let amount = parseInt(document.getElementById("id_cantidad").value);
+    // console.log("Agregar");
+    // const item = {
+    //   nombre: tituloPlato,
+    //   id: idPlato,
+    //   precio: precioPlato,
+    //   imagen: imgPlato,
+    //   descripcion: descripcionPlato,
+    //   cantidad: amount,
+    // };
+    // const lista = carrito.filter((item) => item.id !== id);
 
-    addAlert();
-    setCarrito([...lista, item]);
+    // addAlert();
+    // setCarrito([...lista, item]);
+
     setOpen(false);
   };
 
@@ -85,30 +86,10 @@ const ItemPlato = ({
             <p className="card-text text-secondary">{descripcionPlato}</p>
           </div>
           <button className="btn btn-dark" onClick={handleOpen}>
-            {" "}
             Agregar al carrito <i className="fas fa-shopping-cart"></i>
           </button>
         </div>
       </div>
-
-      {/* <div className="col">
-        <div className="card h-100">
-          <img src={imgPlato} alt={tituloPlato} />
-          <div className="card-body">
-            <div className="informacion p-2">
-              <h5 className="card-title">{tituloPlato}</h5>
-              <p className="card-text">{descripcionPlato}</p>
-            </div>
-           
-            <div className="d-flex justify-content-around align-items-center pb-2 pt-3">
-              <button type="button" className="botones" onClick={handleOpen}> Agregar al carrito <i className="fas fa-shopping-cart"></i>
-                
-               
-              </button>
-            </div>
-          </div>
-        </div>
-        </div> */}
 
       <Modal
         open={open}

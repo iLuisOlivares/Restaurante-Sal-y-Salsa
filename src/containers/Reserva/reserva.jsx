@@ -71,13 +71,16 @@ const Reserva = () => {
   };
 
   const postReservas = async (reserva) => {
-    await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva", {
-      method: "Post",
-      body: JSON.stringify(reserva),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva",
+      {
+        method: "Post",
+        body: JSON.stringify(reserva),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   const onSubmit = (e) => {
@@ -107,16 +110,16 @@ const Reserva = () => {
         // correo: correo.campo,
         // celular: parseInt(celular.campo),
         // cantidad_personas: parseInt(numeroPersonas.campo),
-              // nombre_referencia: nombre.campo,
-      cliente_id: 2,
-      servicio_id: parseInt(select.campo),
-      estado: "pendiente",
-      fecha: fechaString,
-      asunto: asunto.campo,
-      correo: correo.campo,
-      celular: celular.campo,
-      cantidad_personas: numeroPersonas.campo,
-      nombre_referencia: nombre.campo
+        // nombre_referencia: nombre.campo,
+        cliente_id: 2,
+        servicio_id: parseInt(select.campo),
+        estado: "pendiente",
+        fecha: fechaString,
+        asunto: asunto.campo,
+        correo: correo.campo,
+        celular: celular.campo,
+        cantidad_personas: numeroPersonas.campo,
+        nombre_referencia: nombre.campo,
       };
 
       console.log(reservaO);
@@ -180,7 +183,7 @@ const Reserva = () => {
                 label="Asunto"
                 placeholder="Asunto"
                 inputType="text"
-                leyenda="Escriba un asunto valido"
+                leyenda="Escriba un asunto válido"
                 expresionRegular={expresiones.asunto}
                 name="asunto"
               />
@@ -193,17 +196,17 @@ const Reserva = () => {
                     label="Nombre Completo"
                     placeholder="Nombre Completo"
                     inputType="text"
-                    leyenda="Escriba un nombre valido"
+                    leyenda="Escriba un nombre válido"
                     name="nombre"
                   />
                   <Input
                     estado={correo}
                     cambiarEstado={cambiarCorreo}
                     expresionRegular={expresiones.correo}
-                    label="Correo Electronico"
-                    placeholder="Correo Electronico"
+                    label="Correo Electrónico"
+                    placeholder="Correo Electrónico"
                     inputType="email"
-                    leyenda="Escriba un Email valido"
+                    leyenda="Escriba un Email válido"
                     name="email"
                   />
                   <Input
@@ -213,7 +216,7 @@ const Reserva = () => {
                     label="Celular"
                     placeholder="Celular"
                     inputType="text"
-                    leyenda="Escriba un numero celular valido"
+                    leyenda="Escriba un numero celular válido"
                     name="celular"
                   />
                 </div>
@@ -221,8 +224,8 @@ const Reserva = () => {
                   <InputNumber
                     estado={numeroPersonas}
                     cambiarEstado={cambiarNumero}
-                    label="Numero de personas"
-                    leyenda="Ingrese un numero de valido: Entre 1 y 30 personas"
+                    label="Número de personas"
+                    leyenda="Ingrese un número de válido: Entre 1 y 30 personas"
                     exprecionRegular=""
                     name="personas"
                   />
@@ -231,7 +234,7 @@ const Reserva = () => {
                     cambiarEstado={cambiarFecha}
                     expresionRegular={expresiones.celular}
                     label="Fecha"
-                    leyenda="Ingrese una fecha valida: Posterior al dia de hoy"
+                    leyenda="Ingrese una fecha válida: Posterior al día de hoy"
                     name="fecha"
                     minFecha={minFecha}
                   />

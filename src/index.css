@@ -52,3 +52,15 @@ code {
   justify-content: space-around;
   align-items: center;
 }
+
+.cent-item {
+  text-align: center;
+}
+
+.ali-self {
+  align-self: center;
+}
+
+.social-media-hov:hover {
+  cursor: pointer;
+}

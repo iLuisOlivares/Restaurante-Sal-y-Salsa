@@ -44,7 +44,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                 <>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/updateCarta"
                       activeclass="active"
@@ -87,7 +87,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
               </li>
               <li className="nav-item">
                 <NavLink className="select-items" to="/contactanos">
-                  Contactanos
+                  Contáctanos
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -110,7 +110,11 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                       </NavLink>
                     </li>
                     <li className="nav-item">
-                      <NavLink className="select-items" exact to="register">
+                      <NavLink
+                        className="select-items ali-self"
+                        exact
+                        to="register"
+                      >
                         Registrarse
                       </NavLink>
                     </li>
@@ -209,7 +213,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   onClick={() => closeModal(false)}
                   to="/contactanos"
                 >
-                  Contactanos
+                  Contáctanos
                 </NavLink>
               </li>
               <li className="">
