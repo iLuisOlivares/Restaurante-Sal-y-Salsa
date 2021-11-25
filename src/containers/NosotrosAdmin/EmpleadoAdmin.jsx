@@ -2,7 +2,33 @@ import React from 'react'
 
 
 
-function EmpleadoAdmin({id, nombre,foto,descripcion,cargo}) {
+function EmpleadoAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,empleados, setEmpleados}) {
+
+
+  
+  const eliminarItem = (id) => {
+    const lista = empleados.filter((item) => item.id !== id);
+    eliminarEmpleado(id);
+    console.log(lista);
+    if(lista !== ''){
+      setEmpleados(lista);
+    }else{
+      setEmpleados([]);
+    }
+    };
+
+  const eliminarEmpleado = async(id) =>{
+    const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado/"+ id,{
+    method: 'DELETE'
+    }
+    );
+    return(resp.ok) ? 'Borrado':'No se elimino';
+
+  }
+
+
+
+
     return (
     //     <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
     //     <div className="card col-4" style={styleUs}>
@@ -26,8 +52,8 @@ function EmpleadoAdmin({id, nombre,foto,descripcion,cargo}) {
       </div>
     </div>
     <div  className="d-flex justify-content-end">
-    <button className="m-1 text-light btn btn-info ">Actualizar</button>
-    <button className="m-1 text-light btn btn-danger ">Eliminar</button>
+    {/* <button className="m-1 text-light btn btn-info ">Actualizar</button> */}
+    <button  onClick={()=>{eliminarItem(id)}} className="m-1 text-light btn btn-danger ">Eliminar</button>
     </div>
 
   </div>

@@ -24,11 +24,10 @@ function Nosotros() {
 
   const obtenerRestaurante = async (id) => {
     const data = await fetch(
-      "https://61955d6c74c1bd00176c6d13.mockapi.io/api/v1/Restaurante/" + id
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" + id
     );
     const resp = await data.json();
-    console.log(resp);
-    setRestaurante(resp);
+    setRestaurante(resp[0]);
   };
 
   return (
