@@ -54,9 +54,20 @@ function ContactUs() {
     campo: "",
     valido: null,
   });
-  const [formulario, cambiarFormulario] = useState(null);
+  const [formulario, cambiarFormulario] = useState("null");
 
   const MySwal = withReactContent(Swal);
+
+  const postContactanos = async (conctactanos) => { await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos',{
+    method: 'Post',
+    body: JSON.stringify(conctactanos),
+    headers:{
+        'Content-Type': 'application/json'
+    }
+
+});
+
+}
 
   const sendAlert = () => {
     MySwal.fire({
@@ -83,7 +94,17 @@ function ContactUs() {
       descripcion.valido === "true"
     ) {
       console.log("Formulario Completado");
-      sendAlert();
+      sendAlert();  
+
+      const obj = {
+        nombre: nombre.campo,
+        asunto: asunto.campo,
+        correo: correo.campo,
+        descripcion: descripcion.campo  
+      }
+      console.log(obj);
+      postContactanos(obj)
+
       e.preventDefault();
 
       emailjs
@@ -101,16 +122,18 @@ function ContactUs() {
             console.log(error.text);
           }
         );
+
+
       e.target.reset();
 
-      cambiarFormulario(true);
+      cambiarFormulario("true");
       cambiarNombre({ campo: "", valido: null });
       cambiarAsunto({ campo: "", valido: null });
       cambiarCorreo({ campo: "", valido: null });
       cambiarDescripcion({ campo: "", valido: null });
     } else {
       e.preventDefault();
-      cambiarFormulario(false);
+      cambiarFormulario("false");
       console.log("Formulario no completado");
     }
   };
@@ -200,13 +223,13 @@ function ContactUs() {
                 leyenda="Escriba una descripcion valida"
                 name="message"
               />
-              {formulario === false && (
+              {formulario === "false" && (
                 <MensajeStyled1 className="fw-light">
                   No se ha enviado el formulario: Verifique cada uno de los
                   campos
                 </MensajeStyled1>
               )}
-              {formulario === true && (
+              {formulario === "true" && (
                 <MensajeStyled2 className="fw-light">
                   Se ha enviado el formulario: Muchas gracias
                 </MensajeStyled2>

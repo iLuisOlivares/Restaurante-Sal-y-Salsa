@@ -1,8 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ComponenteServicio from "../../components/ComponenteServicio";
 
 function Servicios() {
+
+  const [servicios,setServicios] = useState([]);
+
+  useEffect(() => {
+    obtenerServicios();
+  }, []);
+
+  const obtenerServicios = async () => {
+    const data = await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio"
+    );
+    const resp = await data.json();
+    console.log(resp);
+    setServicios(resp);
+  };
+
   return (
     <Fragment>
       <div className="container">
@@ -34,54 +50,20 @@ function Servicios() {
                   </Link>
                 </div>
               </div>
-
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Aniversario"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251609/Sal-Salsa/servicios%20/lfdfxg3933sraplv4kf1.jpg"
+              {
+                servicios.map((item)=>(
+                  <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
+                  <ComponenteServicio
+                  key={item.id}
+                  nombre= {item.nombre}
+                  leyenda={item.descripcion}
+                  imagen= {item.imagen}
                 ></ComponenteServicio>
-              </div>
+                  </div>
+                ))
+              }
 
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Cumpleaños"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251608/Sal-Salsa/servicios%20/c3wor97idvhmxtlhvrrs.jpg"
-                ></ComponenteServicio>
-              </div>
-
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Fiestas Infantiles"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251609/Sal-Salsa/servicios%20/uj8sqc18vawecqqyxpcg.jpg"
-                ></ComponenteServicio>
-              </div>
-
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Declaraciones"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251608/Sal-Salsa/servicios%20/gi9n6qrhmike9iktgb35.jpg"
-                ></ComponenteServicio>
-              </div>
-
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Despedidas"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251608/Sal-Salsa/servicios%20/uqlj6uhr8fv58y8xpqmw.jpg"
-                ></ComponenteServicio>
-              </div>
-
-              <div className="col-12 col-lg-4 col-md-6 d-flex p-3 align-items-center justify-content-center">
-                <ComponenteServicio
-                  nombre="Cena de amigos"
-                  leyenda="Lorem ipsum dolor sit amet consect  dolor epsum adipisicing elit. Voluptatum, qui!"
-                  imagen="https://res.cloudinary.com/iluiss/image/upload/v1637251609/Sal-Salsa/servicios%20/oaqnhv31tx7pyuwezy9m.jpg"
-                ></ComponenteServicio>
-              </div>
+            
             </div>
           </div>
         </div>
