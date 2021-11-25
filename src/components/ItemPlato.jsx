@@ -92,6 +92,7 @@ const ItemPlato = ({
   const postData = async () => {
     let amount = parseInt(document.getElementById("id_cantidad").value);
 
+    // CHANGE THE userId BY THE LOGIN DATA
     const response = await fetch(
       "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido",
       {

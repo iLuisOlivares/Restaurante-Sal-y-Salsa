@@ -7,15 +7,30 @@ const Carrito = () => {
   const [carrito, setCarrito] = useState([]);
   // const [carrito, setCarrito] = useState(JSON.parse(window.localStorage.getItem("Carrito")));
   useEffect(() => {
-    let data = localStorage.getItem("Carrito");
-    if (data != null) {
-      setCarrito(JSON.parse(data));
-    }
+    // let data = localStorage.getItem("Carrito");
+    // if (data != null) {
+    //   setCarrito(JSON.parse(data));
+    // }
+    getPlatos(20);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("Carrito", JSON.stringify(carrito));
-  }, [carrito]);
+  const getPlatos = async (id) => {
+    await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // data.map()
+        // setCarrito(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // useEffect(() => {
+  //   alert("Primero");
+  //   // localStorage.setItem("Carrito", JSON.stringify(carrito));
+  // }, [carrito]);
 
   return (
     <div className="my-5 container-xxl" style={{ minHeight: "74vh" }}>
@@ -27,17 +42,11 @@ const Carrito = () => {
       <main className="container">
         <div className="row">
           <div className="card col-8 p-1">
-            <ContainerCarro
-              carrito={carrito}
-              setCarrito={setCarrito}
-            ></ContainerCarro>
+            <ContainerCarro carrito={carrito} setCarrito={setCarrito} />
           </div>
 
           {/* < Contenedor para pagar todo  */}
-          <ComponentePago
-            carrito={carrito}
-            setCarrito={setCarrito}
-          ></ComponentePago>
+          <ComponentePago carrito={carrito} setCarrito={setCarrito} />
         </div>
 
         {/* Boton seguir comprando */}
