@@ -36,17 +36,6 @@ export default function NavSection({
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink className="select-items" to="/carta">
-                  Menú
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/nosotros">
-                  Nosotros
-                </NavLink>
-              </li>
-
               {/* Show control in big screen */}
               {showControl ? (
                 <>
@@ -80,9 +69,50 @@ export default function NavSection({
                       Administrar Comentarios
                     </NavLink>
                   </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Nosotros"
+                      activeclass="active"
+                    >
+                      Administrar Nosotros
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Contactanos"
+                      activeclass="active"
+                    >
+                      Administrar contáctanos
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Servicios"
+                      activeclass="active"
+                    >
+                      Administrar Servicios
+                    </NavLink>
+                  </li>
                 </>
               ) : (
                 <>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/carta">
+                      Menú
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/nosotros">
+                      Nosotros
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
                     <NavLink className="select-items" to="/servicios">
                       Servicios
@@ -161,24 +191,6 @@ export default function NavSection({
                   Inicio
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/nosotros"
-                >
-                  Nosotros
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/carta"
-                >
-                  Menú
-                </NavLink>
-              </li>
 
               {/* Show control in litlle screen */}
               {true ? (
@@ -189,7 +201,7 @@ export default function NavSection({
                       onClick={() => closeModal(false)}
                       to="/updateCarta"
                     >
-                      Actualizar Menú
+                      Admin Menú
                     </NavLink>
                   </li>
                   <li>
@@ -198,7 +210,7 @@ export default function NavSection({
                       onClick={() => closeModal(false)}
                       to="/admin/Reservas"
                     >
-                      Administrar Reservas
+                      Admin Reservas
                     </NavLink>
                   </li>
                   <li>
@@ -207,12 +219,57 @@ export default function NavSection({
                       onClick={() => closeModal(false)}
                       to="/admin/Comentarios"
                     >
-                      Administrar Comentarios
+                      Admin Comentarios
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Nosotros"
+                    >
+                      Admin Nosotros
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Contactanos"
+                    >
+                      Admin contáctanos
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Servicios"
+                    >
+                      Admin Servicios
                     </NavLink>
                   </li>
                 </Fragment>
               ) : (
                 <>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/nosotros"
+                    >
+                      Nosotros
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/carta"
+                    >
+                      Menú
+                    </NavLink>
+                  </li>
                   <li>
                     <NavLink
                       className="select-items"

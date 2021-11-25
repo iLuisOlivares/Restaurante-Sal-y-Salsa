@@ -19,9 +19,10 @@ export default function Login() {
     // auth.login();
     let isLogin = true;
     // localStorage.setItem("isLogin", true);
-    instance.login(isLogin, userId);
+    instance.loginAdmin(isLogin, userId);
     // setTimeout(() => , 0);
     history.push("/inicioAdmin");
+
     window.location.reload(false);
   };
 

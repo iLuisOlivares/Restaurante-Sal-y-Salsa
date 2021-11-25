@@ -42,7 +42,7 @@ function HistoriadAdmin({nombre,foto,descripcion,historia}) {
         <div className="fondo card mb-3 p-3 bg" style={{maxWidth: "1800px", minHeight: "500px"}}>
         <div className="row">
           <div className="col-lg-6 ">
-            <img src={foto} className="img-fluid rounded-start" alt="..."/>
+            <img src={imagenR} className="img-fluid rounded-start" alt="..."/>
             <div ><textarea onChange={(e)=>{onChange(e,setImagenR)}} name="imagen" defaultValue= {foto} className="textareas2 text-dark   mt-2" /></div>
 
           </div>
