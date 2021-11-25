@@ -30,23 +30,14 @@ const ItemPlato = ({
   setCarrito,
   platillos,
 }) => {
-  const MySwal = withReactContent(Swal);
-
   const addAlert = () => {
-    MySwal.fire({
-      title: <p>Juventic</p>,
-      footer: "Copyright 2021",
-      didOpen: () => {
-        MySwal.clickConfirm();
-      },
-    }).then(() => {
-      return Swal.fire({
-        title: "Agregado!",
-        text: "Se ha agregado el platillo",
-        icon: "success",
-        confirmButtonText: "¡Agregado!",
-      });
+    Swal.fire({
+      title: "Producto agregado",
+      text: "¡Se agregó al carrito!",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
     });
+    setOpen(false);
   };
 
   const postData = (id) => {
@@ -62,10 +53,8 @@ const ItemPlato = ({
     // };
     // const lista = carrito.filter((item) => item.id !== id);
 
-    // addAlert();
+    addAlert();
     // setCarrito([...lista, item]);
-
-    setOpen(false);
   };
 
   const [open, setOpen] = React.useState(false);
