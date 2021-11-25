@@ -1,41 +1,38 @@
-import React from 'react'
+import React from "react";
 import { Fragment, useState, useEffect } from "react";
-import HistoriadAdmin from './HistoriadAdmin';
-import EmpleadoAdmin from './EmpleadoAdmin';
-import BootsModal from './BootsModal';
+import HistoriadAdmin from "./HistoriadAdmin";
+import EmpleadoAdmin from "./EmpleadoAdmin";
+import BootsModal from "./BootsModal";
 
 function NosotrosAdmin() {
+  const [empleados, setEmpleados] = useState([]);
+  const [restaurante, setRestaurante] = useState([]);
 
-    const [empleados, setEmpleados] = useState([]);
-    const [restaurante, setRestaurante] = useState([]);
-    
-  
-    useEffect(() => {
-      obtenerEmpleados();
-      obtenerRestaurante(1);
-    }, []);
-  
-    const obtenerEmpleados = async () => {
-      const data = await fetch(
-        "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
-      );
-      const resp = await data.json();
-      console.log(resp);
-      setEmpleados(resp);
-    };
-  
-    const obtenerRestaurante = async (id) => {
-      const data = await fetch(
-        "https://61955d6c74c1bd00176c6d13.mockapi.io/api/v1/Restaurante/" + id
-      );
-      const resp = await data.json();
-      console.log(resp);
-      setRestaurante(resp);
-    };
-  
-    return (
-        <div>
-             <section className="page-section">
+  useEffect(() => {
+    obtenerEmpleados();
+    obtenerRestaurante(1);
+  }, []);
+
+  const obtenerEmpleados = async () => {
+    const data = await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
+    );
+    const resp = await data.json();
+    console.log(resp);
+    setEmpleados(resp);
+  };
+
+  const obtenerRestaurante = async (id) => {
+    const data = await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" + id
+    );
+    const resp = await data.json();
+    setRestaurante(resp);
+  };
+
+  return (
+    <div>
+      <section className="page-section">
         {/* Contenedor */}
         <div className="container rounded-3 bg-dark pb-4">
           {/* <!-- Primera parte -->  */}
@@ -50,12 +47,15 @@ function NosotrosAdmin() {
           {/* <!-- Card Historia -->  */}
 
           {
-            <HistoriadAdmin
-              foto={restaurante.imagen}
-              nombre={restaurante.nombre}
-              descripcion={restaurante.descripcion}
-              historia={restaurante.historia}
-            ></HistoriadAdmin>
+            restaurante.map((item)=>(
+              <HistoriadAdmin
+                key ={item.id}
+                foto={item.imagen}
+                nombre={item.nombre}
+                descripcion={item.descripcion}
+                historia={item.historia}
+              ></HistoriadAdmin>
+            ))
           }
         </div>
       </section>
@@ -76,27 +76,30 @@ function NosotrosAdmin() {
               <div className="m-2 row 1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
                 {empleados.map((item) => (
                   <EmpleadoAdmin
-                    key={item.id}
+                    key={item.nombre}
+                    id= {item.id}
                     nombre={item.nombre}
                     descripcion={item.descripcion}
                     foto={item.imagen}
                     cargo={item.cargo}
+                    empleados ={empleados}
+                    setEmpleados = {setEmpleados}
+                    obtenerEmpleados = {obtenerEmpleados}
                   ></EmpleadoAdmin>
                 ))}
-                    <div  className="d-flex justify-content-end">
-    
-
-             </div>
+                <div className="d-flex justify-content-end">
+                  <BootsModal
+               empleados ={empleados}
+               setEmpleados = {setEmpleados}
+                  ></BootsModal>
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
       </section>
-
-                <BootsModal></BootsModal>
-        </div>
-    )
+    </div>
+  );
 }
 
-export default NosotrosAdmin
+export default NosotrosAdmin;

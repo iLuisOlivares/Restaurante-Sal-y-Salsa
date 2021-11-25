@@ -8,9 +8,9 @@ function ItemReserva({reservas, cambiarReservas, reservaId,reserva, tipo, client
     const mailAccept = "mailto:"+clienteEmail +"?cc=luissolivaresp@gmail.com&bcc=luissolivares14@gmail.com&subject=Aceptar%20Reserva%20-%20Sal%20y%20Salsa&body=Coordial%20saludo%20"+cliente+ "%0D%0A%0D%0ASu%20reserva%20ha%20sido%20aceptada!"+info;
     const mailCancel = "mailto:"+clienteEmail +"?cc=luissolivaresp@gmail.com&bcc=luissolivares14@gmail.com&subject=Rechazar%20Reserva%20-%20Sal%20y%20Salsa&body=Coordial%20saludo%20"+cliente+ "%0D%0A%0D%0ASu%20reserva%20ha%20sido%20rechazadab!"+info;
     
-    const updateEstado = async(object,id)=>{
+    const updateEstado = async(object)=>{
 
-        const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/estado/"+ id,{
+        const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva",{
             method: 'PUT',
             body: JSON.stringify(object),
             headers:{'Content-Type': 'application/json'}
@@ -22,14 +22,14 @@ function ItemReserva({reservas, cambiarReservas, reservaId,reserva, tipo, client
     const onAccept = () =>{
  
         reserva.estado = "aceptado";
-        updateEstado(reserva,reservaId);
+        updateEstado(reserva);
         cambiarReservas([...reservas]);
 
     }
 
     const onReject = () =>{
         reserva.estado = 'rechazado';
-        updateEstado(reserva,reservaId);
+        updateEstado(reserva);
         cambiarReservas([...reservas]);
 
     }

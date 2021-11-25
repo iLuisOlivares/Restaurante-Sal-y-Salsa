@@ -15,8 +15,61 @@
 
 }
 
+.textareas2{
+    resize: none;
+     width: 618px;
+    height:50px;
+    overflow:visible;
 
+}
 
+@media (max-width: 1050px) {
+    .textitulos{
+    overflow: auto;
+        resize: none;
+        width: 300px;
+        height: 50px;
+    }
+    .textareas{
+        margin: 5px;
+        resize: none;
+        width: 400px;
+        height:150px;
+    }
+
+    .textareas2{
+        resize: none;
+         width: 400px;
+        height:50px;
+        overflow:visible;
+    
+    }
+    
+  }
+
+@media (max-width: 900px) {
+    .textitulos{
+    overflow: auto;
+        resize: none;
+        width: 400px;
+        height: 50px;
+    }
+    .textareas{
+        margin: 5px;
+        resize: none;
+        width: 500px;
+        height:150px;
+    }
+
+    .textareas2{
+        resize: none;
+         width: 600px;
+        height:50px;
+        overflow:visible;
+    
+    }
+    
+  }
 @media (max-width: 600px) {
     .textitulos{
     overflow: auto;
@@ -30,5 +83,40 @@
         width: 300px;
         height:150px;
     }
+
+    .textareas2{
+        resize: none;
+         width: 318px;
+        height:50px;
+        overflow:visible;
+    
+    }
     
   }
+
+  
+@media (max-width: 390px) {
+    .textitulos{
+    overflow: auto;
+        resize: none;
+        width: 300px;
+        height: 50px;
+    }
+    .textareas{
+        margin: 5px;
+        resize: none;
+        width: 300px;
+        height:150px;
+    }
+
+    .textareas2{
+        resize: none;
+         width: 318px;
+        height:50px;
+        overflow:visible;
+    
+    }
+    
+  }
+
+  
