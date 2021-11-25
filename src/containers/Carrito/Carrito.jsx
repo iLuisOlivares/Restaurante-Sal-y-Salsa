@@ -1,20 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { Link } from "react-router-dom";
 import ComponentePago from "../../components/ComponentePago";
 import ContainerCarro from "../../assets/Elements/ContainerCarro";
+import { render } from "react-dom";
+// import ComponenteModal from "./ComponenteModal";
 
-const Carrito = () => {
-  const [carrito, setCarrito] = useState([]);
-  // const [carrito, setCarrito] = useState(JSON.parse(window.localStorage.getItem("Carrito")));
-  useEffect(() => {
-    // let data = localStorage.getItem("Carrito");
-    // if (data != null) {
-    //   setCarrito(JSON.parse(data));
-    // }
-    getPlatos(20);
-  }, []);
+class Carrito extends Component {
+  constructor() {
+    super();
+    this.state = {
+      carrito: [],
+      totalPrice: 0
+    };
+  }
 
-  const getPlatos = async (id) => {
+  componentWillMount() {
+    this.getPedidos(20);
+
+    setTimeout(() => this.calcularTotal(), 1000)
+
+  }
+
+  calcularTotal() {
+    let aux = 0;
+    console.log("02", this.state.carrito);
+    for (const iterator of this.state.carrito) {
+      aux += (iterator.precio * iterator.cantidad);
+   }
+   console.log(aux);
+    this.setState({totalPrice: aux})
+  }
+
+  getPedidos = async (id) => {
     await fetch(
       `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`
     )
@@ -22,47 +39,77 @@ const Carrito = () => {
       .then((data) => {
         console.log(data);
         // data.map()
-        setCarrito(data);
+        // setCarrito(data);
+        this.setState({ carrito: data });
+        this.setState({ comment: "sasas" });
       })
       .catch((err) => console.log(err));
   };
 
- 
+  render() {
+    return (
+      <div className="my-5 container-xxl" style={{ minHeight: "74vh" }}>
+        <h2 className="d-flex pb-4 justify-content-center fw-bold">
+          Carrito de compra
+        </h2>
 
-  return (
-    <div className="my-5 container-xxl" style={{ minHeight: "74vh" }}>
-      <h2 className="d-flex pb-4 justify-content-center fw-bold">
-        Carrito de compra
-      </h2>
+        {/* Contenedor de los items  */}
+        <main className="container">
+          <div className="row">
+            <div className="card col-8 p-1">
+              <ContainerCarro
+                carrito={this.state.carrito}
+                setCarrito={this.getPedidos}
+                setValor={this.calcularTotal}
+              />
+            </div>
 
-      {/* Contenedor de los items  */}
-      <main className="container">
-        <div className="row">
-          <div className="card col-8 p-1">
-            <ContainerCarro carrito={carrito} setCarrito={setCarrito} />
+            {/* < Contenedor para pagar todo  */}
+            <div className="col-4">
+              <div className=" card d-flex align-content-center ">
+                <div
+                  style={{ backgroundColor: "rgb(0 0 0 / 80%)" }}
+                  className="card-body  "
+                >
+                  <h5 className="card-title text-light d-flex justify-content-center ">
+                    Total
+                  </h5>
+                  <input
+                    // defaultValue={total}
+                    value={this.state.totalPrice}
+                    id="costo-total"
+                    className="text-dark d-flex justify-content-center card-text"
+                  />
+                  <div className=" d-flex justify-content-center  ">
+                    {/* <ComponenteModal
+                      precio={total}
+                      carrito={carrito}
+                      setCarrito={setCarrito}
+                    ></ComponenteModal> */}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* < Contenedor para pagar todo  */}
-          <ComponentePago carrito={carrito} setCarrito={setCarrito} />
-        </div>
-
-        {/* Boton seguir comprando */}
-        <div className="m-3 d-flex justify-content-center">
-          <Link
-            style={{
-              width: "20rem",
-              color: "white",
-              backgroundColor: "rgba(182, 6, 6, 0.8)",
-            }}
-            className="btn btn-light "
-            to="/carta"
-          >
-            Continuar comprando
-          </Link>
-        </div>
-      </main>
-    </div>
-  );
-};
+          {/* Boton seguir comprando */}
+          <div className="m-3 d-flex justify-content-center">
+            <Link
+              style={{
+                width: "20rem",
+                color: "white",
+                backgroundColor: "rgba(182, 6, 6, 0.8)",
+              }}
+              className="btn btn-light "
+              to="/carta"
+            >
+              Continuar comprando
+            </Link>
+          </div>
+        </main>
+      </div>
+    );
+  }
+}
 
 export default Carrito;

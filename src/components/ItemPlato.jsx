@@ -80,7 +80,7 @@ const ItemPlato = ({
     console.log(resp);
 
     Swal.fire({
-      title: "Se acuailizó el producto",
+      title: "Se actualizó el producto",
       text: "¡Se actualizó el carrito!",
       icon: "success",
       confirmButtonColor: "#3085d6",
