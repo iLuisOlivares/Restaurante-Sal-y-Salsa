@@ -6,7 +6,12 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../containers/Login/auth/useAuth";
 // import "../assets/styles/components/Header.css";
 
-export default function NavSection({ modalControl, isLittle, closeModal }) {
+export default function NavSection({
+  modalControl,
+  isLittle,
+  closeModal,
+  showControl,
+}) {
   const auth = useAuth();
   return (
     <Fragment>
@@ -30,17 +35,20 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Inicio
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/nosotros">
-                  Nosotros
-                </NavLink>
-              </li>
+
               <li className="nav-item">
                 <NavLink className="select-items" to="/carta">
                   Menú
                 </NavLink>
               </li>
-              {auth.isLogged() && (
+              <li className="nav-item">
+                <NavLink className="select-items" to="/nosotros">
+                  Nosotros
+                </NavLink>
+              </li>
+
+              {/* Show control in big screen */}
+              {showControl ? (
                 <>
                   <li className="nav-item">
                     <NavLink
@@ -54,50 +62,52 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   </li>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/admin/Reservas"
                       activeclass="active"
                     >
-                      Reservas
+                      Administrar Reservas
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/admin/Comentarios"
                       activeclass="active"
                     >
-                      Comentarios
+                      Administrar Comentarios
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/servicios">
+                      Servicios
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/reserva">
+                      Reservar
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/contactanos">
+                      Contáctanos
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/mapa">
+                      Mapa
                     </NavLink>
                   </li>
                 </>
               )}
 
-              <li className="nav-item">
-                <NavLink className="select-items" to="/servicios">
-                  Servicios
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/reserva">
-                  Reservar
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/contactanos">
-                  Contáctanos
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/mapa">
-                  Mapa
-                </NavLink>
-              </li>
-
               <div className="d-flex px-6">
-                {!auth.isLogged() && (
+                {!showControl && (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -122,7 +132,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                 )}
               </div>
 
-              {auth.isLogged() && (
+              {showControl && (
                 <>
                   <button onClick={auth.logout}>Cerrar Sessión</button>
                 </>
@@ -139,13 +149,9 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
         </Fragment>
       ) : (
         <Fragment>
-          <section className="">
-            {/* <a className="" href="/">
-              <img className="logo" src={LogoTipo} alt="Logo" />
-            </a> */}
-
+          <section>
             <ul className="container-nav-little">
-              <li className="">
+              <li>
                 <NavLink
                   className="select-items"
                   onClick={() => closeModal(false)}
@@ -155,7 +161,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Inicio
                 </NavLink>
               </li>
-              <li className="">
+              <li>
                 <NavLink
                   className="select-items"
                   onClick={() => closeModal(false)}
@@ -164,7 +170,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Nosotros
                 </NavLink>
               </li>
-              <li className="">
+              <li>
                 <NavLink
                   className="select-items"
                   onClick={() => closeModal(false)}
@@ -173,93 +179,125 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Menú
                 </NavLink>
               </li>
-              {auth.isLogged() && (
+
+              {/* Show control in litlle screen */}
+              {true ? (
+                <Fragment>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/updateCarta"
+                    >
+                      Actualizar Menú
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/admin/Reservas"
+                    >
+                      Administrar Reservas
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items ali-self"
+                      onClick={() => closeModal(false)}
+                      to="/admin/Comentarios"
+                    >
+                      Administrar Comentarios
+                    </NavLink>
+                  </li>
+                </Fragment>
+              ) : (
                 <>
-                  <li className="">
+                  <li>
                     <NavLink
                       className="select-items"
                       onClick={() => closeModal(false)}
-                      exact
-                      to="/updateCarta"
-                      activeclass="active"
+                      to="/servicios"
                     >
-                      Actualizar Menú
+                      Servicios
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/reserva"
+                    >
+                      Reservar
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/contactanos"
+                    >
+                      Contáctanos
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="mapa"
+                    >
+                      Mapa
                     </NavLink>
                   </li>
                 </>
               )}
 
-              <li className="">
+              {/* <li>
                 <NavLink
                   className="select-items"
                   onClick={() => closeModal(false)}
-                  to="/servicios"
+                  exact
+                  to="/updateCarta"
+                  activeclass="active"
                 >
-                  Servicios
+                  Actualizar Menú
                 </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/reserva"
-                >
-                  Reservar
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/contactanos"
-                >
-                  Contáctanos
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="mapa"
-                >
-                  Mapa
-                </NavLink>
-              </li>
+              </li> */}
 
-              <>
-                {!auth.isLogged() && (
-                  <>
-                    <li className="">
-                      <NavLink
-                        className="select-items"
-                        exact
-                        onClick={() => closeModal(false)}
-                        to="login"
-                        activeclass="active"
-                      >
-                        Iniciar Sesión
-                      </NavLink>
-                    </li>
-                    <li className="">
-                      <NavLink
-                        className="select-items"
-                        onClick={() => closeModal(false)}
-                        exact
-                        to="register"
-                      >
-                        Registrarse
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-              </>
+              {/* login and register hide */}
 
-              {auth.isLogged() && (
+              {showControl && (
+                <>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      exact
+                      onClick={() => closeModal(false)}
+                      to="login"
+                      activeclass="active"
+                    >
+                      Iniciar Sesión
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      exact
+                      to="register"
+                    >
+                      Registrarse
+                    </NavLink>
+                  </li>
+                </>
+              )}
+
+              {showControl && (
                 <>
                   <button onClick={auth.logout}>Cerrar Sessión</button>
                 </>
               )}
-              <li className="">
+              <li>
                 <NavLink
                   className="icono-1 select-item"
                   onClick={() => closeModal(false)}

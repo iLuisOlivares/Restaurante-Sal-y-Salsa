@@ -10,9 +10,9 @@ import SocialBar from "./SocialBar";
 
 */
 
-const Layout = ({ children }) => (
+const Layout = ({ children, showControl }) => (
   <div className="App">
-    <Header />
+    <Header showControl={showControl} />
     <SocialBar></SocialBar>
     {children}
     <Footer />
