@@ -26,11 +26,93 @@ const ItemPlato = ({
   imgPlato,
   precioPlato,
   idPlato,
-  carrito,
-  setCarrito,
-  platillos,
 }) => {
-  const addAlert = () => {
+  const verifyRepeatData = async () => {
+    // CHANGE THE userId BY THE LOGIN DATA
+    let userId = 20;
+    const response = await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${userId}`
+    );
+    const resp = await response.json();
+    console.log(resp);
+
+    if (resp.length === 0) {
+      postData();
+      // alert("Crealo totalmente");
+    } else {
+      // verify if the product is in plato_id
+      let updateData = false;
+      let saveItem;
+
+      resp.map((item) => {
+        if (item.plato_id == idPlato) {
+          updateData = true;
+          saveItem = item;
+        }
+      });
+      if (updateData) {
+        putData(saveItem);
+      } else {
+        return postData();
+      }
+    }
+  };
+
+  const putData = async (item) => {
+    let amount = parseInt(document.getElementById("id_cantidad").value);
+
+    const response = await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          cliente_id: item.cliente_id,
+          plato_id: idPlato,
+          cantidad: amount,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const resp = await response.json();
+
+    console.log(resp);
+
+    Swal.fire({
+      title: "Se acuailizó el producto",
+      text: "¡Se actualizó el carrito!",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+    });
+
+    setOpen(false);
+  };
+
+  const postData = async () => {
+    let amount = parseInt(document.getElementById("id_cantidad").value);
+
+    const response = await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido",
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+          cliente_id: 20,
+          plato_id: idPlato,
+          cantidad: amount,
+        }),
+      }
+    );
+    const resp = await response.json();
+    console.log(resp);
     Swal.fire({
       title: "Producto agregado",
       text: "¡Se agregó al carrito!",
@@ -38,23 +120,6 @@ const ItemPlato = ({
       confirmButtonColor: "#3085d6",
     });
     setOpen(false);
-  };
-
-  const postData = (id) => {
-    // let amount = parseInt(document.getElementById("id_cantidad").value);
-    // console.log("Agregar");
-    // const item = {
-    //   nombre: tituloPlato,
-    //   id: idPlato,
-    //   precio: precioPlato,
-    //   imagen: imgPlato,
-    //   descripcion: descripcionPlato,
-    //   cantidad: amount,
-    // };
-    // const lista = carrito.filter((item) => item.id !== id);
-
-    addAlert();
-    // setCarrito([...lista, item]);
   };
 
   const [open, setOpen] = React.useState(false);
@@ -119,7 +184,7 @@ const ItemPlato = ({
               </button>
               <button
                 id="btn__agregar"
-                onClick={() => postData(idPlato)}
+                onClick={() => verifyRepeatData()}
                 type="button"
                 className="botones"
               >
