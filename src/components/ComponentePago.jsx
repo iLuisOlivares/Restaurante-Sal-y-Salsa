@@ -2,34 +2,15 @@ import React, { useEffect, useState } from "react";
 import ComponenteModal from "./ComponenteModal";
 
 function ComponentePago({ carrito, setCarrito }) {
-  
   const [total, setTotal] = useState(0);
-  
 
-  // const calcularPrecio = () => {
-  //   let precio = 0;
-  //   for (const iterator of carrito) {
-  //     let total = iterator.precio * iterator.cantidad;
-  //     precio = total + precio;
-  //   }
-  //   return precio;
-    
-  // };
-
-  // for (const iterator of carrito) {
-  //   console.log(iterator.cantidad * iterator.precio);
-  //   let sum=iterator.cantidad * iterator.precio
-  //   setTotal(total + sum)
-  // }
-  
   const calcularPrecio = () => {
-    setTimeout(() => console.log("k trate?", carrito), 0)
-    
+    setTimeout(() => console.log("k trate?", carrito), 0);
   };
-  
+
   useEffect(() => {
     let valor = calcularPrecio();
-    console.log("total",valor)
+    console.log("total", valor);
   }, [total]);
 
   return (

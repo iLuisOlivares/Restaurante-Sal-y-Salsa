@@ -1,5 +1,5 @@
 import React from "react";
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import HistoriadAdmin from "./HistoriadAdmin";
 import EmpleadoAdmin from "./EmpleadoAdmin";
 import BootsModal from "./BootsModal";
@@ -24,7 +24,8 @@ function NosotrosAdmin() {
 
   const obtenerRestaurante = async (id) => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" + id
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" +
+        id
     );
     const resp = await data.json();
     setRestaurante(resp);
@@ -46,17 +47,15 @@ function NosotrosAdmin() {
 
           {/* <!-- Card Historia -->  */}
 
-          {
-            restaurante.map((item)=>(
-              <HistoriadAdmin
-                key ={item.id}
-                foto={item.imagen}
-                nombre={item.nombre}
-                descripcion={item.descripcion}
-                historia={item.historia}
-              ></HistoriadAdmin>
-            ))
-          }
+          {restaurante.map((item) => (
+            <HistoriadAdmin
+              key={item.id}
+              foto={item.imagen}
+              nombre={item.nombre}
+              descripcion={item.descripcion}
+              historia={item.historia}
+            ></HistoriadAdmin>
+          ))}
         </div>
       </section>
 
@@ -77,21 +76,21 @@ function NosotrosAdmin() {
                 {empleados.map((item) => (
                   <EmpleadoAdmin
                     key={item.id}
-                    id= {item.id}
+                    id={item.id}
                     nombre={item.nombre}
                     descripcion={item.descripcion}
                     foto={item.imagen}
                     cargo={item.cargo}
-                    empleados ={empleados}
-                    setEmpleados = {setEmpleados}
-                    obtenerEmpleados = {obtenerEmpleados}
+                    empleados={empleados}
+                    setEmpleados={setEmpleados}
+                    obtenerEmpleados={obtenerEmpleados}
                   ></EmpleadoAdmin>
                 ))}
                 <div className="d-flex justify-content-end">
                   <BootsModal
-              obtenerEmpleados = {obtenerEmpleados}
-               empleados ={empleados}
-               setEmpleados = {setEmpleados}
+                    obtenerEmpleados={obtenerEmpleados}
+                    empleados={empleados}
+                    setEmpleados={setEmpleados}
                   ></BootsModal>
                 </div>
               </div>
