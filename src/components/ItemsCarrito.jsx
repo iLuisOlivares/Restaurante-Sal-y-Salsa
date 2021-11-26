@@ -79,7 +79,7 @@ function ItemsCarrito({
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            setCarrito(20);
+            setCarrito(parseInt(localStorage.getItem("ui")));
             deleteAlert();
             setValor();
             // Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
@@ -101,7 +101,7 @@ function ItemsCarrito({
       {
         method: "PUT",
         body: JSON.stringify({
-          cliente_id: 20,
+          cliente_id: parseInt(localStorage.getItem("ui")),
           plato_id: id_plato,
           cantidad: valor,
         }),

@@ -10,25 +10,24 @@ class Carrito extends Component {
     super();
     this.state = {
       carrito: [],
-      totalPrice: 0
+      totalPrice: 0,
     };
   }
 
   componentWillMount() {
-    this.getPedidos(20);
+    this.getPedidos(parseInt(localStorage.getItem("ui")));
 
-    setTimeout(() => this.calcularTotal(), 1000)
-
+    setTimeout(() => this.calcularTotal(), 1000);
   }
 
   calcularTotal() {
     let aux = 0;
     console.log("02", this.state.carrito);
     for (const iterator of this.state.carrito) {
-      aux += (iterator.precio * iterator.cantidad);
-   }
-   console.log(aux);
-    this.setState({totalPrice: aux})
+      aux += iterator.precio * iterator.cantidad;
+    }
+    console.log(aux);
+    this.setState({ totalPrice: aux });
   }
 
   getPedidos = async (id) => {
