@@ -22,7 +22,7 @@ const style = {
   pb: 3,
 };
 
-const Header = ({ showControl }) => {
+const Header = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -37,11 +37,7 @@ const Header = ({ showControl }) => {
         className="navbar navbar-dark bg-dark navbar-expand-lg  py-1"
         id="mainNav"
       >
-        <NavSection
-          modalControl={handleOpen}
-          isLittle={false}
-          showControl={showControl}
-        />
+        <NavSection modalControl={handleOpen} isLittle={false} />
 
         <Modal
           open={open}

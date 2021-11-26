@@ -13,15 +13,22 @@ export default function Login() {
 
   const auth = UseAuth();
   let userId = 0;
+  let userType = "";
+
   const instance = new AuthData();
 
   const handleLogin = () => {
     // auth.login();
-    let isLogin = true;
-    // localStorage.setItem("isLogin", true);
-    instance.loginAdmin(isLogin, userId);
-    // setTimeout(() => , 0);
-    history.push("/inicioAdmin");
+
+    if (userType === "U") {
+      let isLogin = true;
+      instance.login(isLogin, userId);
+      history.push("/carta");
+    } else if (userType === "A") {
+      let isLogin = true;
+      instance.loginAdmin(isLogin, userId);
+      history.push("/inicioAdmin");
+    }
 
     window.location.reload(false);
   };
@@ -54,6 +61,7 @@ export default function Login() {
             let dbUser = data[0].nombre_usuario;
             let dbPass = data[0].contrasena;
             userId = data[0].id;
+            userType = data[0].tipo_usuario;
 
             if (dbUser === userName && dbPass === password) {
               MySwal.fire({

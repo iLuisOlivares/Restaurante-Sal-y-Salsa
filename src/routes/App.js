@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,19 +35,10 @@ import ContactanosAdmin from "../containers/ContactanosAdmin/ContactanosAdmin";
 */
 
 function App() {
-  // localStorage.setItem("isLogin", false);
-  // localStorage.setItem("ui", 0);
-
-  let val = localStorage.getItem("isAdmin");
-  const [toggleRoutesUser, setToggleRoutesUser] = React.useState(val);
-  const [toggleRoutesPermission, setToggleRoutesPermission] =
-    React.useState(val);
-  // setToggleRoutesPermission(true);
-
   return (
     <AuthProvider>
       <Router>
-        <Layout showControl={toggleRoutesPermission}>
+        <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/nosotros" component={Nosotros} />
@@ -63,13 +54,9 @@ function App() {
               <Redirect to="/" />
             </Route> */}
 
-            {/* <Route exact path="/signin">
-              <Redirect to="/login" />
-            </Route> */}
-
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-            {toggleRoutesPermission ? (
+            {localStorage.getItem("isAdmin") ? (
               <>
                 <Route exact path="/inicioAdmin" component={InicioAdmin} />
                 <Route exact path="/updateCarta" component={UpdateCarta} />
