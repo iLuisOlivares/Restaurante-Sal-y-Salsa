@@ -60,7 +60,6 @@ function ItemPlato({
           }}
           className="m-2 btn btn-danger"
         >
-          {" "}
           <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
         </button>
       </div>

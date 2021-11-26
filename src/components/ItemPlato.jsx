@@ -130,6 +130,18 @@ const ItemPlato = ({
   const handleClose = () => {
     setOpen(false);
   };
+  const verificarInicio = () => {
+    if (localStorage.getItem("isLogin")) {
+      handleOpen();
+    } else {
+      Swal.fire({
+        title: "Falta iniciar sesión",
+        text: "Debes iniciar sesión para agregar producto al carrito",
+        icon: "question",
+        confirmButtonColor: "#3085d6",
+      });
+    }
+  };
 
   return (
     <Fragment>
@@ -140,7 +152,7 @@ const ItemPlato = ({
             <h4 className="m-2 card-title">{tituloPlato}</h4>
             <p className="card-text text-secondary">{descripcionPlato}</p>
           </div>
-          <button className="btn btn-dark" onClick={handleOpen}>
+          <button className="btn btn-dark" onClick={verificarInicio}>
             Agregar al carrito <i className="fas fa-shopping-cart"></i>
           </button>
         </div>

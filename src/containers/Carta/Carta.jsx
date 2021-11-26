@@ -84,7 +84,7 @@ class Carta extends Component {
                 <div className="row row-cols-md-3 g-4 o-fix-column">
                   {this.state.carta.length === 0 ? (
                     <p className="m-5 d-flex justify-content-center">
-                      No hay ningún platillo en el Menu
+                      No hay ningún platillo en el Menú
                     </p>
                   ) : (
                     this.state.carta.map((item) => (
