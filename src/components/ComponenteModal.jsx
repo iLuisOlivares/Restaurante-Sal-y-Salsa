@@ -24,7 +24,12 @@ function ComponenteModal({ precio, carrito, eliminarItem }) {
           text: "Su compra ha sido exitosa",
           icon: "success",
           confirmButtonText: "Éxito",
-        });
+        }).then((result=>{
+          if(result.isConfirmed){
+        window.location.pathname = "/"
+          }
+
+        }));
       } else {
         return Swal.fire({
           title: "Compra Rechazada!",
@@ -56,7 +61,6 @@ function ComponenteModal({ precio, carrito, eliminarItem }) {
             console.log(result.text);
             sendAlert(true);
             eliminarItem();
-
             e.target.reset();
             
         },

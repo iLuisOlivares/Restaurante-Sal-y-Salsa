@@ -110,7 +110,6 @@ class Carrito extends Component {
                       for (const iterator of this.state.carrito) {
                         this.deletePedidos(iterator.id);
                       }
-                      this.getPedidos();
 
                     }}
                   getItems = {this.getPedidos}
