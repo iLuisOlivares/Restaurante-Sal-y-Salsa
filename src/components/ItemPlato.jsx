@@ -130,6 +130,7 @@ const ItemPlato = ({
   const handleClose = () => {
     setOpen(false);
   };
+
   const verificarInicio = () => {
     if (localStorage.getItem("isLogin")) {
       handleOpen();

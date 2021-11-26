@@ -274,6 +274,7 @@ const Reserva = () => {
                     value="Send"
                     type="submit"
                     className="btn btn-danger"
+                    onClick={() => alert("auida luis")}
                   >
                     Enviar
                   </button>

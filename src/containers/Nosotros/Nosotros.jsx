@@ -24,7 +24,8 @@ function Nosotros() {
 
   const obtenerRestaurante = async (id) => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" + id
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" +
+        id
     );
     const resp = await data.json();
     setRestaurante(resp[0]);
@@ -52,7 +53,7 @@ function Nosotros() {
               nombre={restaurante.nombre}
               descripcion={restaurante.descripcion}
               historia={restaurante.historia}
-            ></HistoriaComponent>
+            />
           }
         </div>
       </section>

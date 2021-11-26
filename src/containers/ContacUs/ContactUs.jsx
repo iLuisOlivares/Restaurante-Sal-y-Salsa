@@ -58,16 +58,18 @@ function ContactUs() {
 
   const MySwal = withReactContent(Swal);
 
-  const postContactanos = async (conctactanos) => { await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos',{
-    method: 'Post',
-    body: JSON.stringify(conctactanos),
-    headers:{
-        'Content-Type': 'application/json'
-    }
-
-});
-
-}
+  const postContactanos = async (conctactanos) => {
+    await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos",
+      {
+        method: "Post",
+        body: JSON.stringify(conctactanos),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
 
   const sendAlert = () => {
     MySwal.fire({
@@ -94,16 +96,16 @@ function ContactUs() {
       descripcion.valido === "true"
     ) {
       console.log("Formulario Completado");
-      sendAlert();  
+      sendAlert();
 
       const obj = {
         nombre: nombre.campo,
         asunto: asunto.campo,
         correo: correo.campo,
-        descripcion: descripcion.campo  
-      }
+        descripcion: descripcion.campo,
+      };
       console.log(obj);
-      postContactanos(obj)
+      postContactanos(obj);
 
       e.preventDefault();
 
@@ -123,7 +125,6 @@ function ContactUs() {
           }
         );
 
-
       e.target.reset();
 
       cambiarFormulario("true");
@@ -135,6 +136,20 @@ function ContactUs() {
       e.preventDefault();
       cambiarFormulario("false");
       console.log("Formulario no completado");
+    }
+  };
+
+  const verificarInicio = () => {
+    // alert("asass");
+    if (localStorage.getItem("isLogin")) {
+      alert("enviar");
+    } else {
+      Swal.fire({
+        title: "Falta iniciar sesión",
+        text: "Debes iniciar sesión para agregar producto al carrito",
+        icon: "question",
+        confirmButtonColor: "#3085d6",
+      });
     }
   };
 
@@ -218,7 +233,7 @@ function ContactUs() {
                 cambiarEstado={cambiarDescripcion}
                 expresionRegular={expresiones.descripcion}
                 label="Descripción"
-                placeholder="Descripcion"
+                placeholder="Descripción"
                 inputType="text"
                 leyenda="Escriba una descripcion valida"
                 name="message"
@@ -235,10 +250,11 @@ function ContactUs() {
                 </MensajeStyled2>
               )}
               <button
-                id="button-id"
-                value="Send"
-                type="submit"
+                // id="button-id"
+                // value="Send"
+                // type="submit"
                 className="btn btn-danger"
+                onClick={() => verificarInicio}
               >
                 Enviar
               </button>
