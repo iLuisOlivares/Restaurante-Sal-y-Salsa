@@ -54,10 +54,6 @@ class UpdateCarta extends Component {
 
       this.postPlato();
 
-      Swal.fire("¡Agregado!", "El plato ha sido agregado.", "success");
-
-      this.getPlatos();
-
       return console.log("Confirmado");
     } else {
       console.log("NO FUNCIONA");
@@ -65,7 +61,7 @@ class UpdateCarta extends Component {
   };
 
   async postPlato() {
-    const response = await fetch(
+    await fetch(
       "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato",
       {
         method: "POST",
@@ -86,9 +82,13 @@ class UpdateCarta extends Component {
           precio: this.state.platoPrecio,
         }),
       }
-    );
-    const resp = await response.json();
-    console.log(resp);
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire("¡Agregado!", "El plato ha sido agregado.", "success");
+        this.getPlatos();
+      });
   }
 
   render() {
@@ -162,8 +162,8 @@ class UpdateCarta extends Component {
                         descripcion={data.descripcion}
                         precio={data.precio}
                         imagen={data.imagen}
-                        platillos = {this.state.platos}
-                        setPlatillos = {this.setState}
+                        platillos={this.state.platos}
+                        setPlatillos={this.setState}
                         funGetPlato={this.getPlatos}
                       />
                     ))}
