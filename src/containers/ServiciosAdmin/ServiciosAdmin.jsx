@@ -64,6 +64,7 @@ function NosotrosAdmin() {
                 ))}
                 <div className="d-flex justify-content-end">
                   <BootsModal
+                obtenerServicios = {obtenerServicios}
                servicios ={servicios}
                setServicios = {setServicios}
                   ></BootsModal>

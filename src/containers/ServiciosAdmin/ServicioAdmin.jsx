@@ -1,10 +1,10 @@
 import React from 'react'
-
+import ActualizarModal from './ActualizarModal';
 
 
 function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servicios, setServicios}) {
 
-
+  const identficador =  "identificador"+id ;
   
   const eliminarItem = (id) => {
     const lista = servicios.filter((item) => item.id !== id);
@@ -52,7 +52,14 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
       </div>
     </div>
     <div  className="d-flex justify-content-end">
-    {/* <button className="m-1 text-light btn btn-info ">Actualizar</button> */}
+      <ActualizarModal
+      ids = {id}
+      id = {identficador} 
+      nombre = {nombre}
+      api = "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio"
+      servicios = {servicios}
+      setServicios = {setServicios}
+      descripcion = {descripcion} ></ActualizarModal>
     <button  onClick={()=>{eliminarItem(id)}} className="m-1 text-light btn btn-danger ">Eliminar</button>
     </div>
 
