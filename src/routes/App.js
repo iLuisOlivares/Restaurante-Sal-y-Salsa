@@ -40,7 +40,11 @@ function App() {
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Home} />
+            {localStorage.getItem("isAdmin") ? (
+              <Route exact path="/" component={InicioAdmin} />
+            ) : (
+              <Route exact path="/" component={Home} />
+            )}
             <Route exact path="/nosotros" component={Nosotros} />
             <Route exact path="/carta" component={Carta} />
             <Route exact path="/servicios" component={Servicios} />
@@ -58,7 +62,6 @@ function App() {
             <Route exact path="/register" component={Register} />
             {localStorage.getItem("isAdmin") ? (
               <>
-                <Route exact path="/inicioAdmin" component={InicioAdmin} />
                 <Route exact path="/updateCarta" component={UpdateCarta} />
                 <Route exact path="/Admin/Reservas" component={ReservasAdmin} />
                 <Route

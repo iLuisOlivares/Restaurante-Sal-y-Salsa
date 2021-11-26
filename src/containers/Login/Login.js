@@ -23,11 +23,11 @@ export default function Login() {
     if (userType === "U") {
       let isLogin = true;
       instance.login(isLogin, userId);
-      history.push("/carta");
+      history.push("/");
     } else if (userType === "A") {
       let isLogin = true;
       instance.loginAdmin(isLogin, userId);
-      history.push("/inicioAdmin");
+      history.push("/");
     }
 
     window.location.reload(false);

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import LogoTipo from "../assets/Img/LogoTipo.png";
@@ -13,7 +14,20 @@ export default function NavSection({
   showControl,
   userLogin,
 }) {
-  const auth = useAuth();
+  const history = useHistory();
+
+  const cerrarSesion = () => {
+    // delete session
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("ui");
+    localStorage.removeItem("totalPrice");
+
+    // return to login
+    history.push("/login");
+    window.location.reload(false);
+  };
+
   return (
     <Fragment>
       {isLittle === false ? (
@@ -166,10 +180,10 @@ export default function NavSection({
                 <li className="nav-item">
                   <NavLink
                     className="select-items cent-item"
-                    onClick={auth.logout}
+                    onClick={cerrarSesion}
                     to="/login"
                   >
-                    Cerrar Sessión
+                    Cerrar sesión
                   </NavLink>
                 </li>
               )}
@@ -347,10 +361,10 @@ export default function NavSection({
                 <li>
                   <NavLink
                     className="select-items"
-                    onClick={auth.logout}
+                    onClick={cerrarSesion}
                     to="/login"
                   >
-                    Cerrar Sessión
+                    Cerrar sesión
                   </NavLink>
                 </li>
               )}
