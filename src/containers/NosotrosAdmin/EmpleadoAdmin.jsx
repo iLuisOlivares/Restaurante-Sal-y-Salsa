@@ -1,10 +1,11 @@
 import React from 'react'
-
+import ActualizarModal from '../ServiciosAdmin/ActualizarModal';
 
 
 function EmpleadoAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,empleados, setEmpleados}) {
 
 
+  const identficador =  "identificador"+id ;
   
   const eliminarItem = (id) => {
     const lista = empleados.filter((item) => item.id !== id);
@@ -53,6 +54,14 @@ function EmpleadoAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,emple
     </div>
     <div  className="d-flex justify-content-end">
     {/* <button className="m-1 text-light btn btn-info ">Actualizar</button> */}
+    <ActualizarModal
+      ids = {id}
+      id = {identficador} 
+      nombre = {nombre}
+      api = "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
+      servicios = {empleados}
+      setServicios = {setEmpleados}
+      descripcion = {descripcion} ></ActualizarModal>
     <button  onClick={()=>{eliminarItem(id)}} className="m-1 text-light btn btn-danger ">Eliminar</button>
     </div>
 

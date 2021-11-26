@@ -76,7 +76,7 @@ function NosotrosAdmin() {
               <div className="m-2 row 1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
                 {empleados.map((item) => (
                   <EmpleadoAdmin
-                    key={item.nombre}
+                    key={item.id}
                     id= {item.id}
                     nombre={item.nombre}
                     descripcion={item.descripcion}
@@ -89,6 +89,7 @@ function NosotrosAdmin() {
                 ))}
                 <div className="d-flex justify-content-end">
                   <BootsModal
+              obtenerEmpleados = {obtenerEmpleados}
                empleados ={empleados}
                setEmpleados = {setEmpleados}
                   ></BootsModal>

@@ -4,7 +4,7 @@ import { Button } from "bootstrap";
 import InputModal from "./InputModal";
 
 
-function BootsModal({empleados, setEmpleados}) {
+function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
     const presetCloud = 'jkby2ddk';
     const apiCLoud = 'https://api.cloudinary.com/v1_1/iluiss/upload'
     
@@ -12,11 +12,6 @@ function BootsModal({empleados, setEmpleados}) {
     const [nombre,setNombre] = useState('');
     const [cargo,setCargo] = useState('');
 
-    const agregarItem = (empleado) => {
-            setEmpleados([...empleados, empleado]);
-            postEmpleado(empleado);
-      
-        };  
 
 
     const postEmpleado = async (Empleado) => { await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/Empleado',{
@@ -25,8 +20,10 @@ function BootsModal({empleados, setEmpleados}) {
         headers:{
             'Content-Type': 'application/json'
         }
-
-    })};
+        
+        
+    });
+    obtenerEmpleados();};
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
@@ -41,8 +38,7 @@ function BootsModal({empleados, setEmpleados}) {
                 descripcion: cargo,
                 imagen: url.toString()
             }
-            // postEmpleado(empleado);
-            agregarItem(empleado);
+            postEmpleado(empleado);
             }
     }
     const obtenerInfo = (e) => {
