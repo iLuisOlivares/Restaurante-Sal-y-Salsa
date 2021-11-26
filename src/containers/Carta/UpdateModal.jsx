@@ -1,55 +1,36 @@
-import React from 'react'
-import { useState } from "react";
-import { Button } from "bootstrap";
-import InputModal from "./InputModal";
+import React, { Fragment, useState } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import InputModal from '../ServiciosAdmin/InputModal';
+import {faEdit} from "@fortawesome/free-solid-svg-icons";
 
-function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,api}) {
+
+function UpdateModal({ids, id, platillos, setPlatillos,nombre1,descripcion,precio1,imagen1,api, funGetPlato}) {
+
     const presetCloud = 'jkby2ddk';
     const apiCLoud = 'https://api.cloudinary.com/v1_1/iluiss/upload'
     
-    const [url,setUrl] = useState('');
+    const [url,setUrl] = useState(imagen1);
     const [nombre,setNombre] = useState(nombre1);
     const [cargo,setCargo] = useState(descripcion);
-
-    
-    const agregarItem = (servicio) => {
-        const lista = servicios.filter((item) => item.id !== ids);
-        putServicio(servicio);
-        if(lista !== ''){
-            setServicios([...lista, servicio]);
-          }else{
-            setServicios([]);
-          }
-          };
-      
-        
-
-
-    const putServicio = async (servicio) => {const resp = await fetch(api,{
-        method: 'PUT',
-        body: JSON.stringify(servicio),
-        headers:{'Content-Type': 'application/json'}
-        });
-
-        return(resp.ok) ? 'Actualizado' : 'No Actualizado'
-    };
+    const [precio,setPrecio] = useState(precio1);
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
             alert('Por favor espere a que se suba la imagen')
-        }else if(!url || !nombre || !cargo){
+        }else if(!url || !nombre || !cargo || !precio){
             alert('Por favor digite o suba todos los datos solicitados');
         }else{
             console.log(url);
-            const servicio = {
+            const plato = {
                 id: ids,
                 restaurante_id: 1,
                 nombre: nombre,
                 descripcion: cargo,
+                precio: precio,
                 imagen: url.toString()
             }
-            console.log(servicio);
-            agregarItem(servicio);
+            console.log(plato);
+            agregarItem(plato);
             }
     }
     const obtenerInfo = (e) => {
@@ -60,8 +41,7 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
         });
 
     }
-    
-  
+
 
     const subir= async(file) => {
 
@@ -89,19 +69,41 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
             throw error 
         }
     }
+    
 
+    const agregarItem = (plato) => {
+        const lista = platillos.filter((item) => item.id !== ids);
+        putPlato(plato);
+        // if(lista !== ''){
+        //     setPlatillos([...lista, plato]);
+        //   }else{
+        //     setPlatillos([]);
+        //   }
+          };
+
+    const putPlato = async (plato) => {const resp = await fetch(api,{
+        method: 'PUT',
+        body: JSON.stringify(plato),
+        headers:{'Content-Type': 'application/json'}
+        });
+        funGetPlato();
+        return(resp.ok) ? 'Actualizado' : 'No Actualizado'
+    };
+
+    
     return (
-        <>
-        <button
-          type="button"
-          className="m-1 text-light btn btn-info "
-          data-bs-toggle="modal"
-          data-bs-target= {"#" + id}
-        >
-          Actualizar
-        </button>
-  
-        <div
+        <Fragment>
+            <button
+            data-bs-toggle="modal"
+            data-bs-target= {"#" + id}
+            onClick={() => {
+              // UpdatePlato(platoId);
+            }}
+            className="m-2 btn btn-info"
+                  >
+            <FontAwesomeIcon style={{color:"white"}} icon={faEdit}></FontAwesomeIcon>
+                  </button>
+                  <div
           className="modal fade"
           id= {id}
           data-bs-backdrop="static"
@@ -113,7 +115,7 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
+                <h5 className="modal-title text-dark" id="exampleModalLabel">
                   Actualizar 
                 </h5>
                 <button
@@ -124,18 +126,29 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
                 ></button>
               </div>
               <div className="modal-body">
-                <form >
+                <form>
   
                   <InputModal
-                  className="text-dark"
                   nombre = "Nombre:"
                   setInput= {setNombre}
+                  tipo = "text"
+                  defaulValue = {nombre1}
                   
                   ></InputModal>
+                  <InputModal
+                  nombre = "Precio:"
+                  setInput= {setPrecio}
+                  tipo = "number"
+                  defaulValue = {precio1}
+                  ></InputModal>
+
                     <InputModal
                   nombre = "Descripcion:"
                   setInput= {setCargo}
+                  tipo = "text"
+                  defaulValue = {cargo}
                   ></InputModal>
+                  
                   
                   <div className="mb-3">
                     <label htmlFor="recipient-name" className="col-form-label">
@@ -161,8 +174,8 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
             </div>
           </div>
         </div>
-      </>   
+        </Fragment>
     )
 }
 
-export default ActualizarModal
+export default UpdateModal

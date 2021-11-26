@@ -1,16 +1,16 @@
 import React from 'react'
 
-function InputModal({setInput,nombre}) {
+function InputModal({setInput,nombre,tipo,defaulValue}) {
 
     const modificarInput = (e) => {
         setInput(e.target.value);
     }
     return (
-        <div className="mb-3">
+        <div className="text-dark mb-3">
         <label htmlFor="recipient-name" className="col-form-label">
           {nombre}
         </label>
-        <input onChange={modificarInput} type="text" className="form-control" id="recipient-name" />
+        <input onChange={modificarInput} type={tipo} defaultValue={defaulValue} step="1000" className="form-control" id="recipient-name" />
       </div>
     )
 }

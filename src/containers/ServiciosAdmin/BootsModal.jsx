@@ -87,7 +87,7 @@ function BootsModal({servicios, setServicios, obtenerServicios}) {
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
-        Nuevo empleado
+        Nuevo Servicio
       </button>
 
       <div
@@ -138,10 +138,10 @@ function BootsModal({servicios, setServicios, obtenerServicios}) {
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                Cerrar
               </button>
               <button onClick={SubirEmpleado} type="button" className="btn btn-success" data-bs-dismiss="modal" >
-                Crear Empleado
+                Crear Servicio
               </button>
               
             </div>

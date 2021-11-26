@@ -60,7 +60,7 @@ function ReservasAdmin() {
                 </div>
               </div>
 
-              <div className="body-r">
+              <div style={{minHeight:"600px"}} className="body-r">
                 {
                   reservas.filter( (e) => e.estado.includes(term.toLowerCase())  || !term).filter((e) => e.id.toString().includes(term2)  || !term2).filter((e) => e.fecha.includes(term3)  || !term3).map((reser)=>(
                     <ItemReserva

@@ -162,6 +162,8 @@ class UpdateCarta extends Component {
                         descripcion={data.descripcion}
                         precio={data.precio}
                         imagen={data.imagen}
+                        platillos = {this.state.platos}
+                        setPlatillos = {this.setState}
                         funGetPlato={this.getPlatos}
                       />
                     ))}

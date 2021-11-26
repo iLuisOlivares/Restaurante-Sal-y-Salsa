@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import UpdateModal from "./UpdateModal";
 
 function ItemPlato({
   platoId,
@@ -10,6 +11,7 @@ function ItemPlato({
   descripcion,
   precio,
   imagen,
+  platillos,
   funGetPlato,
 }) {
   // Detele Plato
@@ -51,17 +53,37 @@ function ItemPlato({
       className="conte text-light"
     >
       <div className="d-flex justify-content-around">
-        <p className="m-2 ">Plato: {platoId}</p>
+        <p style={{ width: "160px", textAlign: "center" }} className="m-2 ">
+          Plato: {platoId}
+        </p>
 
-        <p className="m-2 fw-lighter fw-lighter">{nombre}</p>
-        <button
-          onClick={() => {
-            eliminarPlato(platoId);
-          }}
-          className="m-2 btn btn-danger"
+        <p
+          style={{ width: "160px", textAlign: "center" }}
+          className="m-2 fw-lighter fw-lighter"
         >
-          <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
-        </button>
+          {nombre}
+        </p>
+        <div className="d-flex" style={{ width: "160px" }}>
+          <UpdateModal
+            id={"identidad" + platoId}
+            ids={platoId}
+            nombre1={nombre}
+            descripcion={descripcion}
+            precio1={precio}
+            imagen1={imagen}
+            platillos={platillos}
+            funGetPlato={funGetPlato}
+            api="https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato"
+          />
+          <button
+            onClick={() => {
+              eliminarPlato(platoId);
+            }}
+            className="m-2 btn btn-danger"
+          >
+            <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
+          </button>
+        </div>
       </div>
 
       <section

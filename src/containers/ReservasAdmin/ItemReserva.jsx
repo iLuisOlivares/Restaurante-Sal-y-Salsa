@@ -50,12 +50,12 @@ function ItemReserva({reservas, cambiarReservas, reservaId,reserva, tipo, client
             <div style = {{backgroundColor: "rgba(28, 27, 29, 0.836)"}}className="conte text-light">
     
             <div className="d-flex justify-content-around">
-            <p className="m-2 ">ID: {reservaId}</p>
-            <p className="m-2 ">tipo: {tipo}</p>
-            <p className="m-2 ">Cliente: {cliente}</p>
-            <p className="m-2 ">Cantidad personas: {numeroPersonas}</p>
-            <p className="m-2 ">Email: {clienteEmail}</p>
-            <p className="m-2 fw-lighter fw-lighter">{fecha}</p>
+            <p style = {{width:"120px",textAlign: "center"}} className="m-2 ">ID: {reservaId}</p>
+            <p style = {{width:"160px",textAlign: "center"}}className="m-2 ">tipo: {tipo}</p>
+            <p style = {{width:"160px",textAlign: "center"}}className="m-2 ">Cliente: {cliente}</p>
+            <p style = {{width:"160px",textAlign: "center"}}className="m-2 ">Cantidad personas: {numeroPersonas}</p>
+            <p style = {{width:"170px",textAlign: "center"}}className="m-2 ">Email: {clienteEmail}</p>
+            <p style = {{width:"160px",textAlign: "center"}}className="m-2 fw-lighter fw-lighter">{fecha}</p>
             </div>
             
             <div style={{backgroundColor:"#f1eded"}} className="conteiner text-dark d-flex justify-content-around">

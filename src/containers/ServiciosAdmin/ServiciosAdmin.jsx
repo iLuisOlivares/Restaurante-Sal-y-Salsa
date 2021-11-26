@@ -48,7 +48,7 @@ function NosotrosAdmin() {
           <div className="row pb-5">
             <div className="col-12  col-lg-12">
               {/* <!-- sub-row1 -->  */}
-              <div className="m-2 row 1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
+              <div style={{minHeight:"600px"}} className="m-2 row 1 d-flex justify-content-center row cok-12 bg-dark rounded m-lg-2 m-0 m-md-1">
                 {servicios.map((item) => (
                   <ServicioAdmin
                     key={item.nombre}

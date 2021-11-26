@@ -27,12 +27,12 @@ function ContactanosAdmin() {
             <div className="col-12">
               <div className="">
                 <div className="nav-r">
-                  <div className="text-light px-2 py-2 d-flex  justify-content-around filtros">
+                  <div className="text-light px-2 py-2 d-flex  justify-content-around ">
                     <h5 className="m-0">Administrar contactanos</h5>
                   </div>
                 </div>
   
-                <div className="body-r">
+                <div  style={{minHeight:"600px"}} className="body-r">
                  
                     {
                         contactanos.map((item)=>(

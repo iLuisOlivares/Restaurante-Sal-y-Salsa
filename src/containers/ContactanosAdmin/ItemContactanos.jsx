@@ -30,9 +30,9 @@ function ItemContactanos({id,nombre,correo ,asunto,descripcion,contactanos,cambi
         <div style = {{backgroundColor: "rgba(28, 27, 29, 0.836)"}}className="conte text-light">
     
         <div className="d-flex justify-content-around">
-        <p style={{width: "120px", fontSize: "13px"}} className="m-2 ">Nombre:  {nombre}</p>
+        <p style = {{width:"120px",textAlign: "center"}} className="m-2 ">Nombre:  {nombre}</p>
 
-        <p className="m-2 fw-lighter fw-lighter">{correo}</p>
+        <p style={{width: "190px", fontSize: "13px"}} className="m-2 fw-lighter fw-lighter">{correo}</p>
             <button onClick={()=>{eliminarItem(id)}} className="m-2 btn btn-danger">   <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
         </div>
         
