@@ -4,6 +4,32 @@ import "./login.css";
 export default function Register() {
   // add post method in fetch
 
+
+  handleSubmit = async e => {
+    e.preventDefault()
+
+  try{
+    let config = {
+      method: 'POST',
+      headers: {
+        'Acecept':'aplicaction/json'
+      },
+      body: JSON.stringify(this.state.form)
+    }
+
+    let res = await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/cliente/`, config
+    )
+
+    let json= await res.json()
+
+    console.log(json);
+  } catch (error){
+
+  }}  
+  
+
+
   return (
     <form className="formulario-container">
       <h1 className="titulo">Registro</h1>
