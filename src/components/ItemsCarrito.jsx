@@ -22,6 +22,7 @@ function ItemsCarrito({
   id_pedido,
   carrito,
   setValor,
+  getPedidos,
 }) {
   const Toast = Swal.mixin({
     toast: true,
@@ -80,7 +81,8 @@ function ItemsCarrito({
             // setCarrito(parseInt(localStorage.getItem("ui")));
             calcularTotal();
             deleteAlert();
-            setTimeout(() => window.location.reload(false), 2000);
+            getPedidos(parseInt(localStorage.getItem("ui")));
+            // setTimeout(() => window.location.reload(false), 2000);
             // setValor();
             // Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
           })

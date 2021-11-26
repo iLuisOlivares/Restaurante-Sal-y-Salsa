@@ -61,6 +61,7 @@ class Carrito extends Component {
               <ContainerCarro
                 carrito={this.state.carrito}
                 setValor={this.setState}
+                getPedidos={this.getPedidos}
               />
             </div>
 

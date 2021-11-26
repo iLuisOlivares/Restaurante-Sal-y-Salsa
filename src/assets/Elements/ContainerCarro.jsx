@@ -1,7 +1,7 @@
 import React from "react";
 import ItemsCarrito from "../../components/ItemsCarrito";
 
-function ContainerCarro({ carrito, setValor }) {
+function ContainerCarro({ carrito, setValor, getPedidos }) {
   return (
     <div className="xd">
       {carrito.length === 0 ? (
@@ -21,6 +21,7 @@ function ContainerCarro({ carrito, setValor }) {
             cantidad={item.cantidad}
             carrito={carrito}
             setValor={setValor}
+            getPedidos={getPedidos}
           />
         ))
       )}
