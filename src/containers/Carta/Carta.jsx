@@ -41,34 +41,6 @@ class Carta extends Component {
       speed: 500,
     };
 
-    // const [carta, cambiarCarta] = useState([]);
-
-    // useEffect(() => {
-    //   getCartaData();
-    // }, []);
-
-    // const getCartaData = async () => {
-    //   const data = await fetch(
-    //     "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato"
-    //   );
-    //   const resp = await data.json();
-    //   console.log(resp);
-    //   cambiarCarta(resp);
-    // };
-
-    // const [carrito, setCarrito] = useState([]);
-    // // const [carrito, setCarrito] = useState(JSON.parse(window.localStorage.getItem("Carrito")));
-    // useEffect(() => {
-    //   let data = localStorage.getItem("Carrito");
-    //   if (data != null) {
-    //     setCarrito(JSON.parse(data));
-    //   }
-    // }, []);
-
-    // useEffect(() => {
-    //   localStorage.setItem("Carrito", JSON.stringify(carrito));
-    // }, [carrito]);
-
     return (
       <Fragment>
         {/* Main content */}
