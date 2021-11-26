@@ -74,13 +74,22 @@ const Reserva = () => {
     await fetch(
       "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva",
       {
-        method: "Post",
-        body: JSON.stringify(reserva),
+        method: "POST",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
         headers: {
           "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(reserva),
       }
-    );
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
 
   const onSubmit = (e) => {
@@ -111,6 +120,7 @@ const Reserva = () => {
         // celular: parseInt(celular.campo),
         // cantidad_personas: parseInt(numeroPersonas.campo),
         // nombre_referencia: nombre.campo,
+
         cliente_id: 2,
         servicio_id: parseInt(select.campo),
         estado: "pendiente",
@@ -120,6 +130,16 @@ const Reserva = () => {
         celular: celular.campo,
         cantidad_personas: numeroPersonas.campo,
         nombre_referencia: nombre.campo,
+
+        // cliente_id: 2,
+        // servicio_id: 1,
+        // estado: "pendiente",
+        // fecha: "2021-11-24 15:41",
+        // asunto: "Aniversario",
+        // correo: "luissolivares14@gmail.com",
+        // celular: "3184544",
+        // cantidad_personas: 3,
+        // nombre_referencia: "Luis sebastian",
       };
 
       console.log(reservaO);
