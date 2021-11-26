@@ -7,13 +7,10 @@ import {
   ImagenStyled,
   InputCompraStyled,
 } from "../assets/Elements/Carrito";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 import "../containers/Carrito/carrito.css";
-
-let newArrayData = [];
 
 function ItemsCarrito({
   nombre,
@@ -138,10 +135,6 @@ function ItemsCarrito({
       .then((data) => {
         let aux = 0;
         console.log(data);
-        // newArrayData = [];
-        // data.map()
-        // setCarrito(data);
-        // newArrayData = data;
 
         for (const iterator of data) {
           aux += iterator.precio * iterator.cantidad;

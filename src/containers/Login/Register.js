@@ -137,7 +137,7 @@ export default class Register extends Component {
             required
           />
           <label className="check-terms-text"> Téminos y condiciones, </label>
-          <a href="food.com.co" className="check-terms-text">
+          <a href="/" className="check-terms-text">
             haz click aquí para verlos.
           </a>
         </label>

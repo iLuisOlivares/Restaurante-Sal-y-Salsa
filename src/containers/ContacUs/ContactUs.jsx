@@ -262,7 +262,7 @@ function ContactUs() {
           </div>
         </div>
 
-        <Comentarios></Comentarios>
+        <Comentarios />
       </div>
     </Fragment>
   );

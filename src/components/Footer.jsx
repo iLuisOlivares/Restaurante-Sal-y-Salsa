@@ -30,8 +30,10 @@ const Footer = () => {
                   style={style1}
                 />
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit.
+                  Somos un restaurante especializado en brindar excelente
+                  atención a nuestros clientes haciendo principal énfasis en por
+                  supuesto nuestra comida pero no con menor importancia la
+                  comida.
                 </p>
               </div>
 
@@ -72,7 +74,7 @@ const Footer = () => {
                 <p className="textWhite parrafo">Robert Yarce Rincon</p>
                 <p className="textWhite parrafo">Gregson Murcia Castro</p>
                 <p className="textWhite parrafo">Luis Sebastian Olivares</p>
-                <p className="textWhite parrafo">Kerwil</p>
+                {/*                 <p className="textWhite parrafo">Kerwil</p> */}
               </div>
 
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">

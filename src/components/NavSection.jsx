@@ -4,16 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import LogoTipo from "../assets/Img/LogoTipo.png";
 import { NavLink } from "react-router-dom";
-import useAuth from "../containers/Login/auth/useAuth";
-// import "../assets/styles/components/Header.css";
 
-export default function NavSection({
-  modalControl,
-  isLittle,
-  closeModal,
-  showControl,
-  userLogin,
-}) {
+export default function NavSection({ modalControl, isLittle, closeModal }) {
   const history = useHistory();
 
   const cerrarSesion = () => {

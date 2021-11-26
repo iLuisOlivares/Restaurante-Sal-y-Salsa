@@ -212,7 +212,14 @@ class Home extends React.Component {
                 <Testimonio
                   img="https://res.cloudinary.com/iluiss/image/upload/v1637251586/Sal-Salsa/opiniones/t3thfiktcgbkdrbr6veb.jpg"
                   name="Juan Pablo"
+                  descripcion="Un lugar bastante concurrido, como todos sus restaurantes muy
+                  agradable, platos apetitosos para toda la familia y los precios
+                  económicos en relación calidad precio."
                 />
+                {/* <Testimonio
+                  img="https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBlcnNvbmF8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
+                  name="Alex Williams"
+                /> */}
               </div>
               {/* <div className=" card mb-3 o-testimonio-fix">
           <Testimonio img={Testimonio2} name="Violeta Salazar" />

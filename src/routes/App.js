@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  BrowserRouter,
 } from "react-router-dom";
 import "./App.css";
 import Layout from "../components/Layout";
@@ -18,8 +18,6 @@ import Mapa from "../containers/Mapa/Mapa";
 import Login from "../containers/Login/Login";
 import Register from "../containers/Login/Register";
 import UpdateCarta from "../containers/Carta/UpdateCarta";
-import AuthProvider from "../containers/Login/auth/AuthProvider";
-import PrivateRoute from "./PrivateRoute";
 import InicioAdmin from "../containers/Login/InicioAdmin";
 import Contact from "../containers/ContacUs/ContactUs";
 import Comentarios from "../containers/Comentarios/Comentarios";
@@ -36,7 +34,7 @@ import ContactanosAdmin from "../containers/ContactanosAdmin/ContactanosAdmin";
 
 function App() {
   return (
-    <AuthProvider>
+    <BrowserRouter>
       <Router>
         <Layout>
           <Switch>
@@ -89,7 +87,7 @@ function App() {
           </Switch>
         </Layout>
       </Router>
-    </AuthProvider>
+    </BrowserRouter>
   );
 }
 
