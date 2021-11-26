@@ -64,3 +64,13 @@ code {
 .social-media-hov:hover {
   cursor: pointer;
 }
+
+.input-carrito-ls {
+  color: white;
+  /* display: flex; */
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  border: 0px;
+  font-size: 1.5rem;
+}

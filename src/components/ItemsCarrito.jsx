@@ -13,6 +13,8 @@ import withReactContent from "sweetalert2-react-content";
 
 import "../containers/Carrito/carrito.css";
 
+let newArrayData = [];
+
 function ItemsCarrito({
   nombre,
   descripcion,
@@ -23,7 +25,6 @@ function ItemsCarrito({
   id_pedido,
   carrito,
   setValor,
-  setCarrito,
 }) {
   const Toast = Swal.mixin({
     toast: true,
@@ -48,7 +49,7 @@ function ItemsCarrito({
       },
     }).then(() => {
       return Toast.fire({
-        title: "Eliminado!",
+        title: "¡Eliminado!",
         text: "Se ha eliminado el platillo",
         icon: "error",
         confirmButtonText: "Cool",
@@ -66,7 +67,7 @@ function ItemsCarrito({
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminalo",
+      confirmButtonText: "Sí, eliminalo",
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -79,9 +80,11 @@ function ItemsCarrito({
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            setCarrito(parseInt(localStorage.getItem("ui")));
+            // setCarrito(parseInt(localStorage.getItem("ui")));
+            calcularTotal();
             deleteAlert();
-            setValor();
+            setTimeout(() => window.location.reload(false), 2000);
+            // setValor();
             // Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
           })
 
@@ -120,6 +123,35 @@ function ItemsCarrito({
       icon: "success",
       confirmButtonColor: "#3085d6",
     });
+    calcularTotal();
+  };
+
+  const calcularTotal = () => {
+    getPedidosToUpdated(parseInt(localStorage.getItem("ui")));
+  };
+
+  const getPedidosToUpdated = async (id) => {
+    await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let aux = 0;
+        console.log(data);
+        // newArrayData = [];
+        // data.map()
+        // setCarrito(data);
+        // newArrayData = data;
+
+        for (const iterator of data) {
+          aux += iterator.precio * iterator.cantidad;
+        }
+        // setValor({ totalPrice: aux });
+        localStorage.setItem("totalPrice", aux);
+        document.getElementById("costo-total").value =
+          localStorage.getItem("totalPrice");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

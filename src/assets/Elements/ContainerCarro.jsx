@@ -1,11 +1,10 @@
 import React from "react";
 import ItemsCarrito from "../../components/ItemsCarrito";
 
-function ContainerCarro({ carrito, setCarrito, setValor }) {
-
+function ContainerCarro({ carrito, setValor }) {
   return (
     <div className="xd">
-      { carrito.length === 0 ? (
+      {carrito.length === 0 ? (
         <p className="m-5 d-flex justify-content-center">
           No hay ningún producto en el carrito
         </p>
@@ -18,10 +17,9 @@ function ContainerCarro({ carrito, setCarrito, setValor }) {
             id_plato={item.plato_id}
             id_pedido={item.id}
             key={item.id}
-            imagen= {item.imagen}
+            imagen={item.imagen}
             cantidad={item.cantidad}
             carrito={carrito}
-            setCarrito={setCarrito}
             setValor={setValor}
           />
         ))

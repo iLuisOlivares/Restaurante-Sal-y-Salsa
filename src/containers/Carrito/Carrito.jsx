@@ -22,12 +22,15 @@ class Carrito extends Component {
 
   calcularTotal() {
     let aux = 0;
-    console.log("02", this.state.carrito);
+    // console.log("02", this.state.carrito);
     for (const iterator of this.state.carrito) {
       aux += iterator.precio * iterator.cantidad;
     }
     console.log(aux);
-    this.setState({ totalPrice: aux });
+    localStorage.setItem("totalPrice", aux);
+    document.getElementById("costo-total").value =
+      localStorage.getItem("totalPrice");
+    // this.setState({ totalPrice: aux });
   }
 
   getPedidos = async (id) => {
@@ -40,7 +43,6 @@ class Carrito extends Component {
         // data.map()
         // setCarrito(data);
         this.setState({ carrito: data });
-        this.setState({ comment: "sasas" });
       })
       .catch((err) => console.log(err));
   };
@@ -58,8 +60,7 @@ class Carrito extends Component {
             <div className="card col-8 p-1">
               <ContainerCarro
                 carrito={this.state.carrito}
-                setCarrito={this.getPedidos}
-                setValor={this.calcularTotal}
+                setValor={this.setState}
               />
             </div>
 
@@ -74,18 +75,11 @@ class Carrito extends Component {
                     Total
                   </h5>
                   <input
-                    // defaultValue={total}
                     value={this.state.totalPrice}
                     id="costo-total"
-                    className="text-dark d-flex justify-content-center card-text"
+                    className="input-carrito-ls"
+                    disabled
                   />
-                  <div className=" d-flex justify-content-center  ">
-                    {/* <ComponenteModal
-                      precio={total}
-                      carrito={carrito}
-                      setCarrito={setCarrito}
-                    ></ComponenteModal> */}
-                  </div>
                 </div>
               </div>
             </div>
