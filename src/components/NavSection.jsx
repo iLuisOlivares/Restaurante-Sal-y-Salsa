@@ -11,6 +11,7 @@ export default function NavSection({
   isLittle,
   closeModal,
   showControl,
+  userLogin,
 }) {
   const auth = useAuth();
   return (
@@ -37,7 +38,8 @@ export default function NavSection({
               </li>
 
               {/* Show control in big screen */}
-              {showControl ? (
+              {localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
                 <>
                   <li className="nav-item">
                     <NavLink
@@ -136,44 +138,49 @@ export default function NavSection({
                 </>
               )}
 
-              <div className="d-flex px-6">
-                {!showControl && (
-                  <>
-                    <li className="nav-item">
-                      <NavLink
-                        className="select-items"
-                        exact
-                        to="login"
-                        activeclass="active"
-                      >
-                        Iniciar Sesión
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink
-                        className="select-items ali-self"
-                        exact
-                        to="register"
-                      >
-                        Registrarse
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-              </div>
-
-              {showControl && (
-                <>
-                  <button onClick={auth.logout}>Cerrar Sessión</button>
-                </>
+              {/* hide login and register */}
+              {!localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
+                <div className="d-flex px-6">
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items"
+                      exact
+                      to="login"
+                      activeclass="active"
+                    >
+                      Iniciar Sesión
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items ali-self"
+                      exact
+                      to="register"
+                    >
+                      Registrarse
+                    </NavLink>
+                  </li>
+                </div>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    className="select-items cent-item"
+                    onClick={auth.logout}
+                    to="/login"
+                  >
+                    Cerrar Sessión
+                  </NavLink>
+                </li>
               )}
-            </ul>
-            <ul>
-              <li className="nav-item">
-                <NavLink className="icono-1 select-item" to="/carrito">
-                  <FontAwesomeIcon icon={faShoppingBasket} />
-                </NavLink>
-              </li>
+
+              {localStorage.getItem("isLogin") && (
+                <li className="nav-item">
+                  <NavLink className="icono-1 select-item" to="/carrito">
+                    <FontAwesomeIcon icon={faShoppingBasket} />
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </section>
         </Fragment>
@@ -193,8 +200,9 @@ export default function NavSection({
               </li>
 
               {/* Show control in litlle screen */}
-              {true ? (
-                <Fragment>
+              {localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
+                <>
                   <li>
                     <NavLink
                       className="select-items cent-item"
@@ -249,7 +257,7 @@ export default function NavSection({
                       Admin Servicios
                     </NavLink>
                   </li>
-                </Fragment>
+                </>
               ) : (
                 <>
                   <li>
@@ -309,21 +317,9 @@ export default function NavSection({
                 </>
               )}
 
-              {/* <li>
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  exact
-                  to="/updateCarta"
-                  activeclass="active"
-                >
-                  Actualizar Menú
-                </NavLink>
-              </li> */}
-
               {/* login and register hide */}
-
-              {showControl && (
+              {!localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
                 <>
                   <li>
                     <NavLink
@@ -347,22 +343,29 @@ export default function NavSection({
                     </NavLink>
                   </li>
                 </>
+              ) : (
+                <li>
+                  <NavLink
+                    className="select-items"
+                    onClick={auth.logout}
+                    to="/login"
+                  >
+                    Cerrar Sessión
+                  </NavLink>
+                </li>
               )}
 
-              {showControl && (
-                <>
-                  <button onClick={auth.logout}>Cerrar Sessión</button>
-                </>
+              {localStorage.getItem("isLogin") && (
+                <li>
+                  <NavLink
+                    className="icono-1 select-item"
+                    onClick={() => closeModal(false)}
+                    to="carrito"
+                  >
+                    <FontAwesomeIcon icon={faShoppingBasket} />
+                  </NavLink>
+                </li>
               )}
-              <li>
-                <NavLink
-                  className="icono-1 select-item"
-                  onClick={() => closeModal(false)}
-                  to="carrito"
-                >
-                  <FontAwesomeIcon icon={faShoppingBasket} />
-                </NavLink>
-              </li>
             </ul>
           </section>
         </Fragment>
@@ -370,3 +373,7 @@ export default function NavSection({
     </Fragment>
   );
 }
+
+function muestraBarraUsuario() {}
+
+function muestraBarraAdmin() {}

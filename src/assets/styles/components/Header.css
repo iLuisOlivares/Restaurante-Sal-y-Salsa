@@ -6,7 +6,9 @@
 .icono-1 {
   color: whitesmoke;
   font-size: 20px;
-  margin-right: 4rem;
+  margin-right: 2rem;
+  margin-left: 3rem;
+  /* margin-top: 1.5rem; */
 }
 .navbar-brand > img {
   margin-left: 2rem;
