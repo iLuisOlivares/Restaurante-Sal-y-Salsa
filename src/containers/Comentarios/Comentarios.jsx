@@ -36,7 +36,7 @@ function Comentarios() {
     <div className="mt-5 container ">
       <h2 className="p-4 d-flex justify-content-center">Comentarios</h2>
 
-      <InputContact
+      {localStorage.getItem("isLogin")  ? (<InputContact
         estado={mensaje}
         cambiarEstado={cambiarMensaje}
         label="Mensaje"
@@ -46,9 +46,11 @@ function Comentarios() {
         expresionRegular={expresiones.descripcion}
         obtenerComentarios={obtenerComentarios}
       />
-
+      )
+    : <a href="/login" className="mb-3 message-info">Inicia sesión para escribir un comentario</a>
+    }
       <div>
-        <div className="shadow container rounded" style={style1}>
+        <div className="mt-5 shadow container rounded" style={style1}>
           <div className="m-3">
             {respuestas.map((resp) => (
               <ComentariosDiv

@@ -73,3 +73,10 @@ code {
   border: 0px;
   font-size: 1.5rem;
 }
+
+.message-info {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}

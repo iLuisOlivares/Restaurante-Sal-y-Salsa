@@ -93,95 +93,84 @@ const Reserva = () => {
   };
 
   const onSubmit = (e) => {
-    if (
-      asunto.valido === "true" &&
-      nombre.valido === "true" &&
-      correo.valido === "true" &&
-      celular.valido === "true" &&
-      numeroPersonas.valido === "true" &&
-      fecha.valido === "true" &&
-      hora.valido === "true" &&
-      terminos === true
-    ) {
-      console.log("Formulario Completado");
-      sendAlert();
-      e.preventDefault();
+    if (localStorage.getItem("isLogin")) {
+      if (
+        asunto.valido === "true" &&
+        nombre.valido === "true" &&
+        correo.valido === "true" &&
+        celular.valido === "true" &&
+        numeroPersonas.valido === "true" &&
+        fecha.valido === "true" &&
+        hora.valido === "true" &&
+        terminos === true
+      ) {
+        console.log("Formulario Completado");
+        sendAlert();
+        e.preventDefault();
 
-      const fechaO = fecha.campo + " " + hora.campo;
-      const fechaString = fechaO.toString();
+        const fechaO = fecha.campo + " " + hora.campo;
+        const fechaString = fechaO.toString();
 
-      const reservaO = {
-        // cliente_id: 2,
-        // servicio_id: parseInt(select.campo),
-        // estado: "pendiente",
-        // fecha: fechaString,
-        // asunto: asunto.campo,
-        // correo: correo.campo,
-        // celular: parseInt(celular.campo),
-        // cantidad_personas: parseInt(numeroPersonas.campo),
-        // nombre_referencia: nombre.campo,
+        const reservaO = {
+          cliente_id: 2,
+          servicio_id: parseInt(select.campo),
+          estado: "pendiente",
+          fecha: fechaString,
+          asunto: asunto.campo,
+          correo: correo.campo,
+          celular: celular.campo,
+          cantidad_personas: numeroPersonas.campo,
+          nombre_referencia: nombre.campo,
+        };
 
-        cliente_id: 2,
-        servicio_id: parseInt(select.campo),
-        estado: "pendiente",
-        fecha: fechaString,
-        asunto: asunto.campo,
-        correo: correo.campo,
-        celular: celular.campo,
-        cantidad_personas: numeroPersonas.campo,
-        nombre_referencia: nombre.campo,
+        console.log(reservaO);
+        postReservas(reservaO);
 
-        // cliente_id: 2,
-        // servicio_id: 1,
-        // estado: "pendiente",
-        // fecha: "2021-11-24 15:41",
-        // asunto: "Aniversario",
-        // correo: "luissolivares14@gmail.com",
-        // celular: "3184544",
-        // cantidad_personas: 3,
-        // nombre_referencia: "Luis sebastian",
-      };
+        emailjs
+          .sendForm(
+            "service_abyircw",
+            "template_1zoz45o",
+            e.target,
+            "user_D3SnG2Ug2C29tarRbxdi0"
+          )
+          .then(
+            (result) => {
+              console.log(result.text);
+            },
+            (error) => {
+              console.log(error.text);
+            }
+          );
+        e.target.reset();
+        cambiarFormulario("true");
 
-      console.log(reservaO);
-      postReservas(reservaO);
-
-      emailjs
-        .sendForm(
-          "service_abyircw",
-          "template_1zoz45o",
-          e.target,
-          "user_D3SnG2Ug2C29tarRbxdi0"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-      e.target.reset();
-      cambiarFormulario("true");
-
-      cambiarNombre({ campo: "", valido: null });
-      cambiarAsunto({ campo: "", valido: null });
-      cambiarCorreo({ campo: "", valido: null });
-      cambiarCelular({ campo: "", valido: null });
-      cambiarHora({ campo: horanow, valido: "true" });
-      cambiarFecha({ campo: minFecha, valido: "true" });
-      cambiarNumero({ campo: 1, valido: "true" });
-      cambiarTerminos(false);
+        cambiarNombre({ campo: "", valido: null });
+        cambiarAsunto({ campo: "", valido: null });
+        cambiarCorreo({ campo: "", valido: null });
+        cambiarCelular({ campo: "", valido: null });
+        cambiarHora({ campo: horanow, valido: "true" });
+        cambiarFecha({ campo: minFecha, valido: "true" });
+        cambiarNumero({ campo: 1, valido: "true" });
+        cambiarTerminos(false);
+      } else {
+        e.preventDefault();
+        cambiarFormulario("false");
+        console.log("Formulario no completado");
+        console.log(asunto.valido);
+        console.log(nombre.valido);
+        console.log(correo.valido);
+        console.log(numeroPersonas.valido);
+        console.log(fecha.valido);
+        console.log(hora.valido);
+        console.log(terminos);
+      }
     } else {
-      e.preventDefault();
-      cambiarFormulario("false");
-      console.log("Formulario no completado");
-      console.log(asunto.valido);
-      console.log(nombre.valido);
-      console.log(correo.valido);
-      console.log(numeroPersonas.valido);
-      console.log(fecha.valido);
-      console.log(hora.valido);
-      console.log(terminos);
+      Swal.fire({
+        title: "Falta iniciar sesión",
+        text: "Debes iniciar sesión para agregar producto al carrito",
+        icon: "question",
+        confirmButtonColor: "#3085d6",
+      });
     }
   };
 
@@ -294,7 +283,6 @@ const Reserva = () => {
                     value="Send"
                     type="submit"
                     className="btn btn-danger"
-                    onClick={() => alert("auida luis")}
                   >
                     Enviar
                   </button>
