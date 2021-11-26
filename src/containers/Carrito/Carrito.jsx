@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { Link } from "react-router-dom";
-// import ComponentePago from "../../components/ComponentePago";
+import ComponentePago from "../../components/ComponentePago";
 import ContainerCarro from "../../assets/Elements/ContainerCarro";
 import { render } from "react-dom";
 // import ComponenteModal from "./ComponenteModal";
@@ -33,6 +33,7 @@ class Carrito extends Component {
     // this.setState({ totalPrice: aux });
   }
 
+
   getPedidos = async (id) => {
     await fetch(
       `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`
@@ -44,6 +45,25 @@ class Carrito extends Component {
         // setCarrito(data);
         this.setState({ carrito: data });
       })
+      .catch((err) => console.log(err));
+  };
+
+  
+
+  deletePedidos = async (id) => {
+     await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`,
+      {
+        method: "DELETE",
+        mode: "cors",
+      }
+    )
+      .then((res) => res.json())
+      .then((res) =>{
+        
+        console.log(res)
+      }
+      )
       .catch((err) => console.log(err));
   };
 
@@ -78,9 +98,26 @@ class Carrito extends Component {
                   <input
                     value={this.state.totalPrice}
                     id="costo-total"
+                    name = "precio"
                     className="input-carrito-ls"
                     disabled
                   />
+                  
+                  <div className = "m-2 d-flex justify-content-center">
+                  <ComponentePago
+                  eliminarItem = {()=>{
+                  
+                      for (const iterator of this.state.carrito) {
+                        this.deletePedidos(iterator.id);
+                      }
+                      this.getPedidos();
+
+                    }}
+                  getItems = {this.getPedidos}
+                  precio = {localStorage.getItem("totalPrice")}
+                  ></ComponentePago>
+                  </div>
+                  
                 </div>
               </div>
             </div>

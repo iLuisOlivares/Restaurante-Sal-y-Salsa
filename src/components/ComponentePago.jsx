@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ComponenteModal from "./ComponenteModal";
 
-function ComponentePago({ carrito, setCarrito }) {
+function ComponentePago({ eliminarItem, precio,}) {
   const [total, setTotal] = useState(0);
 
   const calcularPrecio = () => {
-    setTimeout(() => console.log("k trate?", carrito), 0);
+    
   };
 
   useEffect(() => {
@@ -15,27 +15,12 @@ function ComponentePago({ carrito, setCarrito }) {
 
   return (
     <div className="col-4">
-      <div className=" card d-flex align-content-center ">
-        <div
-          style={{ backgroundColor: "rgb(0 0 0 / 80%)" }}
-          className="card-body  "
-        >
-          <h5 className="card-title text-light d-flex justify-content-center ">
-            Total
-          </h5>
-          <input
-            defaultValue={total}
-            id="costo-total"
-            className="text-dark d-flex justify-content-center card-text"
-          />
+   
           <div className=" d-flex justify-content-center  ">
             <ComponenteModal
-              precio={total}
-              carrito={carrito}
-              setCarrito={setCarrito}
+              eliminarItem = {eliminarItem}
+              precio={precio}
             ></ComponenteModal>
-          </div>
-        </div>
       </div>
     </div>
   );

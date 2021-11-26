@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import emailjss from "emailjs-com";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-function ComponenteModal({ precio, carrito, setCarrito }) {
+function ComponenteModal({ precio, carrito, eliminarItem }) {
+ 
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+ 
   const MySwal = withReactContent(Swal);
 
   const sendAlert = (bool) => {
@@ -24,7 +28,7 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
       } else {
         return Swal.fire({
           title: "Compra Rechazada!",
-          text: "Su compra fue rechazada",
+          text: "Rellene todos los valores correctamente",
           icon: "error",
           confirmButtonText: "Éxito",
         });
@@ -35,25 +39,33 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjss
+    if(nombre ==='' || correo === ''){
+      sendAlert(false)
+      
+      
+    }else{
+      emailjss
       .sendForm(
         "service_abyircw",
         "template_quhzvbj",
         e.target,
         "user_D3SnG2Ug2C29tarRbxdi0"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          sendAlert(true);
-          e.target.reset();
-          eliminarAllItems();
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            sendAlert(true);
+            eliminarItem();
+
+            e.target.reset();
+            
         },
         (error) => {
           sendAlert(false);
           console.log(error.text);
         }
       );
+    }
   };
 
   const eliminarAllItems = async () => {
@@ -67,7 +79,6 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
     // )
     //   .then((res) => res.json())
     //   .then((res) => console.log(res));
-    setCarrito(lista);
   };
 
   return (
@@ -108,7 +119,7 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
               <form onSubmit={sendEmail}>
                 <div className="mb-3">
                   <label htmlFor="exampleInputEmail1" className="form-label">
-                    Correo electronico
+                    Correo electronico al que desea le llegue la factura
                   </label>
                   <input
                     type="email"
@@ -116,6 +127,9 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     name="email"
+                    onChange ={(e)=>{setCorreo(e.target.value);  }}
+                    onClick ={ (e)=>{setCorreo(e.target.value); }}
+
                   />
                 </div>
 
@@ -128,6 +142,8 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
                     className="form-control"
                     id="exampleInputPassword1"
                     name="nombre"
+                    onChange ={(e)=>{setNombre(e.target.value); }}
+                    onClick ={ (e)=>{setNombre(e.target.value); }}
                   />
                 </div>
 
@@ -135,7 +151,8 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
                   type="text"
                   className="form-control"
                   name="lol"
-                  value={precio}
+                  value= {precio}
+                  // disabled
                   style={{ display: "none" }}
                 />
 
@@ -150,7 +167,7 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
                   <button
                     value="send"
                     type="submit"
-                    className="btn btn-danger"
+                    className="btn btn-success"
                     data-bs-dismiss="modal"
                   >
                     Pagar

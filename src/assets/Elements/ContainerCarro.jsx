@@ -2,9 +2,12 @@ import React from "react";
 import ItemsCarrito from "../../components/ItemsCarrito";
 
 function ContainerCarro({ carrito, setValor, getPedidos }) {
+ 
+  
+
   return (
     <div className="xd">
-      {carrito.length === 0 ? (
+      { carrito.lenght === 0 ? (
         <p className="m-5 d-flex justify-content-center">
           No hay ningún producto en el carrito
         </p>
