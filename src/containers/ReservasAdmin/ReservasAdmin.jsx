@@ -3,26 +3,15 @@ import { useState, useEffect } from "react";
 import "./reservasAdmin.css";
 import ItemReserva from "./ItemReserva";
 
-
-
-
 function ReservasAdmin() {
-
-
   const [reservas, cambiarReservas] = useState([]);
   const [term, setTerm] = useState("pendiente");
   const [term2, setTerm2] = useState("");
   const [term3, setTerm3] = useState("");
-  
 
   useEffect(() => {
     obtenerReservas();
-
   }, []);
-  
- 
-
-
 
   const obtenerReservas = async () => {
     const data = await fetch(
@@ -33,11 +22,6 @@ function ReservasAdmin() {
     cambiarReservas(resp);
   };
 
-
- 
-
-
-
   return (
     <div className="m-3">
       <div className="container">
@@ -46,25 +30,43 @@ function ReservasAdmin() {
             <div className="">
               <div className="nav-r">
                 <div className="text-light px-2 py-2 d-flex  justify-content-between filtros">
-                  <select  onChange = {e => setTerm(e.target.value)} className="mintam form-select form-select-sm" name="select" id="1">
-                  <option defaultValue>Pendiente</option>
-                    <option >Aceptado</option>
-                    <option >Rechazado</option>
-
+                  <select
+                    onChange={(e) => setTerm(e.target.value)}
+                    className="mintam form-select form-select-sm"
+                    name="select"
+                    id="1"
+                  >
+                    <option defaultValue>Pendiente</option>
+                    <option>Aceptado</option>
+                    <option>Rechazado</option>
                   </select>
                 </div>
                 <div className="py-2 px-2 text-light">
-                  <input style={{width: "100px"}} className="m-1" onChange = {e => setTerm2(e.target.value)} placeholder = "Id"type="text" />
-                  <input style={{width: "100px"}} className="m-1" onChange = {e => setTerm3(e.target.value)} placeholder = "Fecha"type="text" />
-
+                  <input
+                    style={{ width: "100px" }}
+                    className="m-1"
+                    onChange={(e) => setTerm2(e.target.value)}
+                    placeholder="Id"
+                    type="text"
+                  />
+                  <input
+                    style={{ width: "100px" }}
+                    className="m-1"
+                    onChange={(e) => setTerm3(e.target.value)}
+                    placeholder="Fecha"
+                    type="text"
+                  />
                 </div>
               </div>
 
-              <div style={{minHeight:"600px"}} className="body-r">
-                {
-                  reservas.filter( (e) => e.estado.includes(term.toLowerCase())  || !term).filter((e) => e.id.toString().includes(term2)  || !term2).filter((e) => e.fecha.includes(term3)  || !term3).map((reser)=>(
+              <div style={{ minHeight: "600px" }} className="body-r">
+                {reservas
+                  .filter((e) => e.estado.includes(term.toLowerCase()) || !term)
+                  .filter((e) => e.id.toString().includes(term2) || !term2)
+                  .filter((e) => e.fecha.includes(term3) || !term3)
+                  .map((reser) => (
                     <ItemReserva
-                      key = {reser.id}
+                      key={reser.id}
                       reservaId={reser.id}
                       tipo={reser.servicio_nombre}
                       cliente={reser.nombre_referencia}
@@ -72,15 +74,12 @@ function ReservasAdmin() {
                       asunto={reser.asunto}
                       fecha={reser.fecha}
                       numeroPersonas={reser.cantidad_personas}
-                      estado = {reser.estado}
-                      reserva = {reser}
-                      reservas = {reservas}
-                      cambiarReservas = {cambiarReservas}
+                      estado={reser.estado}
+                      reserva={reser}
+                      reservas={reservas}
+                      cambiarReservas={cambiarReservas}
                     ></ItemReserva>
-
-
-                  ))
-                }
+                  ))}
               </div>
             </div>
           </div>

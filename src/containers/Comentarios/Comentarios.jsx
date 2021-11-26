@@ -2,7 +2,7 @@ import React from "react";
 import InputContact from "../ContacUs/InputContact";
 import { useState, useEffect } from "react";
 import ComentariosDiv from "../../components/ComentariosDiv";
-
+import { Link } from "react-router-dom";
 const expresiones = {
   descripcion: /^[a-zA-ZÀ-ÿ\s\W]{1,}$/, // Letras y espacios, pueden llevar acentos.
 };
@@ -36,19 +36,22 @@ function Comentarios() {
     <div className="mt-5 container ">
       <h2 className="p-4 d-flex justify-content-center">Comentarios</h2>
 
-      {localStorage.getItem("isLogin")  ? (<InputContact
-        estado={mensaje}
-        cambiarEstado={cambiarMensaje}
-        label="Mensaje"
-        placeholder="Deja tu mensaje"
-        inputType="text"
-        leyenda="Escriba un mensaje valido"
-        expresionRegular={expresiones.descripcion}
-        obtenerComentarios={obtenerComentarios}
-      />
-      )
-    : <a href="/login" className="mb-3 message-info">Inicia sesión para escribir un comentario</a>
-    }
+      {localStorage.getItem("isLogin") ? (
+        <InputContact
+          estado={mensaje}
+          cambiarEstado={cambiarMensaje}
+          label="Mensaje"
+          placeholder="Deja tu mensaje"
+          inputType="text"
+          leyenda="Escriba un mensaje valido"
+          expresionRegular={expresiones.descripcion}
+          obtenerComentarios={obtenerComentarios}
+        />
+      ) : (
+        <Link to="/login" className="mb-3 message-info">
+          Inicia sesión para escribir un comentario
+        </Link>
+      )}
       <div>
         <div className="mt-5 shadow container rounded" style={style1}>
           <div className="m-3">

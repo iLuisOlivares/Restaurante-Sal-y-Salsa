@@ -25,7 +25,7 @@ const servicios = [
 
   {
     id: 3,
-    tittle: "Menu",
+    tittle: "Menú",
     image:
       "https://res.cloudinary.com/iluiss/image/upload/v1637342559/Sal-Salsa/Mapa/aapjtwfw9aytbxvhmrik.png",
     link: "/carta",
@@ -78,7 +78,7 @@ const Mapa = () => (
               tittle={card.tittle}
               img={card.image}
               link={card.link}
-            ></MapaComponent>
+            />
           </div>
         ))}
       </div>

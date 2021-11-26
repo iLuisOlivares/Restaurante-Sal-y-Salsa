@@ -16,7 +16,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
     localStorage.removeItem("totalPrice");
 
     // return to login
-    history.push("/login");
+    history.push("/");
     window.location.reload(false);
   };
 
@@ -61,7 +61,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                     <NavLink
                       className="select-items cent-item"
                       exact
-                      to="/admin/Reservas"
+                      to="/Admin/Reservas"
                       activeclass="active"
                     >
                       Administrar Reservas
@@ -71,7 +71,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                     <NavLink
                       className="select-items cent-item"
                       exact
-                      to="/admin/Comentarios"
+                      to="/Admin/Comentarios"
                       activeclass="active"
                     >
                       Administrar Comentarios
@@ -222,7 +222,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                     <NavLink
                       className="select-items cent-item"
                       onClick={() => closeModal(false)}
-                      to="/admin/Reservas"
+                      to="/Admin/Reservas"
                     >
                       Admin Reservas
                     </NavLink>
@@ -231,7 +231,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                     <NavLink
                       className="select-items ali-self"
                       onClick={() => closeModal(false)}
-                      to="/admin/Comentarios"
+                      to="/Admin/Comentarios"
                     >
                       Admin Comentarios
                     </NavLink>
