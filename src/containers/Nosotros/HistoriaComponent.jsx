@@ -13,7 +13,7 @@ function HistoriaComponent({nombre,foto,descripcion,historia}) {
               <p className="text-dark  card-text text-light fs-5">{historia}</p>
             </div>
             <div className="card-body rounded-3 fondo">
-              <h3 className="text-dark  card-title text-light pb-3"> <b className="msg__in">¡Quienes somos?</b></h3>
+              <h3 className="text-dark  card-title text-light pb-3"> <b className="msg__in">¿Quienes somos?</b></h3>
               <p className="text-dark  card-text text-light fs-5">{descripcion}</p>
             </div>
           </div>

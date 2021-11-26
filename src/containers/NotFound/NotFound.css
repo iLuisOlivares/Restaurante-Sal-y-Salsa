@@ -1,5 +1,5 @@
 .container__error {
-  color: white;
+  color: black;
   display: flex;
   align-items: center;
   height: 490px;
@@ -10,7 +10,7 @@
   margin: auto;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 360px;
-  background-color: blue;
+  /* background-color: black; */
 }
 
 .container__error--details {

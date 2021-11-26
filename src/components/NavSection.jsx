@@ -6,7 +6,13 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../containers/Login/auth/useAuth";
 // import "../assets/styles/components/Header.css";
 
-export default function NavSection({ modalControl, isLittle, closeModal }) {
+export default function NavSection({
+  modalControl,
+  isLittle,
+  closeModal,
+  showControl,
+  userLogin,
+}) {
   const auth = useAuth();
   return (
     <Fragment>
@@ -30,21 +36,14 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Inicio
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/nosotros">
-                  Nosotros
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/carta">
-                  Menú
-                </NavLink>
-              </li>
-              {auth.isLogged() && (
+
+              {/* Show control in big screen */}
+              {localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
                 <>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/updateCarta"
                       activeclass="active"
@@ -54,94 +53,142 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   </li>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/admin/Reservas"
                       activeclass="active"
                     >
-                      Reservas
+                      Administrar Reservas
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink
-                      className="select-items"
+                      className="select-items cent-item"
                       exact
                       to="/admin/Comentarios"
                       activeclass="active"
                     >
-                      Comentarios
+                      Administrar Comentarios
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Nosotros"
+                      activeclass="active"
+                    >
+                      Administrar Nosotros
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Contactanos"
+                      activeclass="active"
+                    >
+                      Administrar contáctanos
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items cent-item"
+                      exact
+                      to="/Admin/Servicios"
+                      activeclass="active"
+                    >
+                      Administrar Servicios
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/carta">
+                      Menú
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/nosotros">
+                      Nosotros
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/servicios">
+                      Servicios
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/reserva">
+                      Reservar
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/contactanos">
+                      Contáctanos
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="select-items" to="/mapa">
+                      Mapa
                     </NavLink>
                   </li>
                 </>
               )}
 
-              <li className="nav-item">
-                <NavLink className="select-items" to="/servicios">
-                  Servicios
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/reserva">
-                  Reservar
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/contactanos">
-                  Contactanos
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="select-items" to="/mapa">
-                  Mapa
-                </NavLink>
-              </li>
-
-              <div className="d-flex px-6">
-                {!auth.isLogged() && (
-                  <>
-                    <li className="nav-item">
-                      <NavLink
-                        className="select-items"
-                        exact
-                        to="login"
-                        activeclass="active"
-                      >
-                        Iniciar Sesión
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="select-items" exact to="register">
-                        Registrarse
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-              </div>
-
-              {auth.isLogged() && (
-                <>
-                  <button onClick={auth.logout}>Cerrar Sessión</button>
-                </>
+              {/* hide login and register */}
+              {!localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
+                <div className="d-flex px-6">
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items"
+                      exact
+                      to="login"
+                      activeclass="active"
+                    >
+                      Iniciar Sesión
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="select-items ali-self"
+                      exact
+                      to="register"
+                    >
+                      Registrarse
+                    </NavLink>
+                  </li>
+                </div>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    className="select-items cent-item"
+                    onClick={auth.logout}
+                    to="/login"
+                  >
+                    Cerrar Sessión
+                  </NavLink>
+                </li>
               )}
-            </ul>
-            <ul>
-              <li className="nav-item">
-                <NavLink className="icono-1 select-item" to="/carrito">
-                  <FontAwesomeIcon icon={faShoppingBasket} />
-                </NavLink>
-              </li>
+
+              {localStorage.getItem("isLogin") && (
+                <li className="nav-item">
+                  <NavLink className="icono-1 select-item" to="/carrito">
+                    <FontAwesomeIcon icon={faShoppingBasket} />
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </section>
         </Fragment>
       ) : (
         <Fragment>
-          <section className="">
-            {/* <a className="" href="/">
-              <img className="logo" src={LogoTipo} alt="Logo" />
-            </a> */}
-
+          <section>
             <ul className="container-nav-little">
-              <li className="">
+              <li>
                 <NavLink
                   className="select-items"
                   onClick={() => closeModal(false)}
@@ -151,119 +198,174 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
                   Inicio
                 </NavLink>
               </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/nosotros"
-                >
-                  Nosotros
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/carta"
-                >
-                  Menú
-                </NavLink>
-              </li>
-              {auth.isLogged() && (
+
+              {/* Show control in litlle screen */}
+              {localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
                 <>
-                  <li className="">
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/updateCarta"
+                    >
+                      Admin Menú
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/admin/Reservas"
+                    >
+                      Admin Reservas
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items ali-self"
+                      onClick={() => closeModal(false)}
+                      to="/admin/Comentarios"
+                    >
+                      Admin Comentarios
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Nosotros"
+                    >
+                      Admin Nosotros
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Contactanos"
+                    >
+                      Admin contáctanos
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items cent-item"
+                      onClick={() => closeModal(false)}
+                      to="/Admin/Servicios"
+                    >
+                      Admin Servicios
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
                     <NavLink
                       className="select-items"
                       onClick={() => closeModal(false)}
-                      exact
-                      to="/updateCarta"
-                      activeclass="active"
+                      to="/nosotros"
                     >
-                      Actualizar Menú
+                      Nosotros
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/carta"
+                    >
+                      Menú
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/servicios"
+                    >
+                      Servicios
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/reserva"
+                    >
+                      Reservar
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="/contactanos"
+                    >
+                      Contáctanos
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      to="mapa"
+                    >
+                      Mapa
                     </NavLink>
                   </li>
                 </>
               )}
 
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/servicios"
-                >
-                  Servicios
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/reserva"
-                >
-                  Reservar
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="/contactanos"
-                >
-                  Contactanos
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink
-                  className="select-items"
-                  onClick={() => closeModal(false)}
-                  to="mapa"
-                >
-                  Mapa
-                </NavLink>
-              </li>
-
-              <>
-                {!auth.isLogged() && (
-                  <>
-                    <li className="">
-                      <NavLink
-                        className="select-items"
-                        exact
-                        onClick={() => closeModal(false)}
-                        to="login"
-                        activeclass="active"
-                      >
-                        Iniciar Sesión
-                      </NavLink>
-                    </li>
-                    <li className="">
-                      <NavLink
-                        className="select-items"
-                        onClick={() => closeModal(false)}
-                        exact
-                        to="register"
-                      >
-                        Registrarse
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-              </>
-
-              {auth.isLogged() && (
+              {/* login and register hide */}
+              {!localStorage.getItem("isAdmin") &&
+              !localStorage.getItem("isLogin") ? (
                 <>
-                  <button onClick={auth.logout}>Cerrar Sessión</button>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      exact
+                      onClick={() => closeModal(false)}
+                      to="login"
+                      activeclass="active"
+                    >
+                      Iniciar Sesión
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="select-items"
+                      onClick={() => closeModal(false)}
+                      exact
+                      to="register"
+                    >
+                      Registrarse
+                    </NavLink>
+                  </li>
                 </>
+              ) : (
+                <li>
+                  <NavLink
+                    className="select-items"
+                    onClick={auth.logout}
+                    to="/login"
+                  >
+                    Cerrar Sessión
+                  </NavLink>
+                </li>
               )}
-              <li className="">
-                <NavLink
-                  className="icono-1 select-item"
-                  onClick={() => closeModal(false)}
-                  to="carrito"
-                >
-                  <FontAwesomeIcon icon={faShoppingBasket} />
-                </NavLink>
-              </li>
+
+              {localStorage.getItem("isLogin") && (
+                <li>
+                  <NavLink
+                    className="icono-1 select-item"
+                    onClick={() => closeModal(false)}
+                    to="carrito"
+                  >
+                    <FontAwesomeIcon icon={faShoppingBasket} />
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </section>
         </Fragment>
@@ -271,3 +373,7 @@ export default function NavSection({ modalControl, isLittle, closeModal }) {
     </Fragment>
   );
 }
+
+function muestraBarraUsuario() {}
+
+function muestraBarraAdmin() {}

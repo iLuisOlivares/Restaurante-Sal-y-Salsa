@@ -26,44 +26,100 @@ const ItemPlato = ({
   imgPlato,
   precioPlato,
   idPlato,
-  carrito,
-  setCarrito,
-  platillos,
 }) => {
-  const MySwal = withReactContent(Swal);
+  const verifyRepeatData = async () => {
+    // CHANGE THE userId BY THE LOGIN DATA
+    let userId = parseInt(localStorage.getItem("ui"));
+    const response = await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${userId}`
+    );
+    const resp = await response.json();
+    console.log(resp);
 
-  const addAlert = () => {
-    MySwal.fire({
-      title: <p>Juventic</p>,
-      footer: "Copyright 2021",
-      didOpen: () => {
-        MySwal.clickConfirm();
-      },
-    }).then(() => {
-      return Swal.fire({
-        title: "Agregado!",
-        text: "Se ha agregado el platillo",
-        icon: "success",
-        confirmButtonText: "¡Agregado!",
+    if (resp.length === 0) {
+      postData();
+      // alert("Crealo totalmente");
+    } else {
+      // verify if the product is in plato_id
+      let updateData = false;
+      let saveItem;
+
+      resp.map((item) => {
+        if (item.plato_id == idPlato) {
+          updateData = true;
+          saveItem = item;
+        }
       });
-    });
+      if (updateData) {
+        putData(saveItem);
+      } else {
+        return postData();
+      }
+    }
   };
 
-  const postData = (id) => {
+  const putData = async (item) => {
     let amount = parseInt(document.getElementById("id_cantidad").value);
-    console.log("Agregar");
-    const item = {
-      nombre: tituloPlato,
-      id: idPlato,
-      precio: precioPlato,
-      imagen: imgPlato,
-      descripcion: descripcionPlato,
-      cantidad: amount,
-    };
-    const lista = carrito.filter((item) => item.id !== id);
 
-    addAlert();
-    setCarrito([...lista, item]);
+    const response = await fetch(
+      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          cliente_id: item.cliente_id,
+          plato_id: idPlato,
+          cantidad: amount,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const resp = await response.json();
+
+    console.log(resp);
+
+    Swal.fire({
+      title: "Se actualizó el producto",
+      text: "¡Se actualizó el carrito!",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+    });
+
+    setOpen(false);
+  };
+
+  const postData = async () => {
+    let amount = parseInt(document.getElementById("id_cantidad").value);
+
+    // CHANGE THE userId BY THE LOGIN DATA
+    const response = await fetch(
+      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido",
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+          cliente_id: parseInt(localStorage.getItem("ui")),
+          plato_id: idPlato,
+          cantidad: amount,
+        }),
+      }
+    );
+    const resp = await response.json();
+    console.log(resp);
+    Swal.fire({
+      title: "Producto agregado",
+      text: "¡Se agregó al carrito!",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+    });
     setOpen(false);
   };
 
@@ -73,6 +129,18 @@ const ItemPlato = ({
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const verificarInicio = () => {
+    if (localStorage.getItem("isLogin")) {
+      handleOpen();
+    } else {
+      Swal.fire({
+        title: "Falta iniciar sesión",
+        text: "Debes iniciar sesión para agregar producto al carrito",
+        icon: "question",
+        confirmButtonColor: "#3085d6",
+      });
+    }
   };
 
   return (
@@ -84,31 +152,11 @@ const ItemPlato = ({
             <h4 className="m-2 card-title">{tituloPlato}</h4>
             <p className="card-text text-secondary">{descripcionPlato}</p>
           </div>
-          <button className="btn btn-dark" onClick={handleOpen}>
-            {" "}
+          <button className="btn btn-dark" onClick={verificarInicio}>
             Agregar al carrito <i className="fas fa-shopping-cart"></i>
           </button>
         </div>
       </div>
-
-      {/* <div className="col">
-        <div className="card h-100">
-          <img src={imgPlato} alt={tituloPlato} />
-          <div className="card-body">
-            <div className="informacion p-2">
-              <h5 className="card-title">{tituloPlato}</h5>
-              <p className="card-text">{descripcionPlato}</p>
-            </div>
-           
-            <div className="d-flex justify-content-around align-items-center pb-2 pt-3">
-              <button type="button" className="botones" onClick={handleOpen}> Agregar al carrito <i className="fas fa-shopping-cart"></i>
-                
-               
-              </button>
-            </div>
-          </div>
-        </div>
-        </div> */}
 
       <Modal
         open={open}
@@ -149,7 +197,7 @@ const ItemPlato = ({
               </button>
               <button
                 id="btn__agregar"
-                onClick={() => postData(idPlato)}
+                onClick={() => verifyRepeatData()}
                 type="button"
                 className="botones"
               >

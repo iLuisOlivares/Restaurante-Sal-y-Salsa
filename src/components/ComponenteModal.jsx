@@ -1,40 +1,36 @@
 import React from "react";
 import emailjss from "emailjs-com";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function ComponenteModal({ precio, carrito, setCarrito }) {
- 
-
   const MySwal = withReactContent(Swal);
 
-  const sendAlert = (bool) =>{
+  const sendAlert = (bool) => {
     MySwal.fire({
       title: <p>Juventic</p>,
-      footer: 'Copyright 2021',
+      footer: "Copyright 2021",
       didOpen: () => {
-
-        MySwal.clickConfirm()
-      }
+        MySwal.clickConfirm();
+      },
     }).then(() => {
-      if(bool){
+      if (bool) {
         return Swal.fire({
-          title: 'Compra exitosa!',
-          text: 'Su compra ha sido exitosa',
-          icon: 'success',
-          confirmButtonText: 'Cool'
-        })
-
-      }else{
+          title: "Compra exitosa!",
+          text: "Su compra ha sido exitosa",
+          icon: "success",
+          confirmButtonText: "Éxito",
+        });
+      } else {
         return Swal.fire({
-          title: 'Compra Rechazada!',
-          text: 'Su compra fue rechazada',
-          icon: 'error',
-          confirmButtonText: 'Cool'
-        })
+          title: "Compra Rechazada!",
+          text: "Su compra fue rechazada",
+          icon: "error",
+          confirmButtonText: "Éxito",
+        });
       }
-    })
-  }
+    });
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -54,7 +50,7 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
           eliminarAllItems();
         },
         (error) => {
-          sendAlert(false)
+          sendAlert(false);
           console.log(error.text);
         }
       );
@@ -77,7 +73,7 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
   return (
     <>
       <button
-      style={{backgroundColor: "rgb(196 55 55)"}}
+        style={{ backgroundColor: "rgb(196 55 55)" }}
         type="button"
         className="btn btn-danger"
         data-bs-toggle="modal"
@@ -151,11 +147,11 @@ function ComponenteModal({ precio, carrito, setCarrito }) {
                   >
                     Cerrar
                   </button>
-                  <button 
-                  value="send" 
-                  type="submit" 
-                  className="btn btn-danger"
-                  data-bs-dismiss="modal"
+                  <button
+                    value="send"
+                    type="submit"
+                    className="btn btn-danger"
+                    data-bs-dismiss="modal"
                   >
                     Pagar
                   </button>

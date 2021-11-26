@@ -88,7 +88,7 @@ class Home extends React.Component {
             <img
               className="o-slide-inicio"
               src="https://res.cloudinary.com/iluiss/image/upload/v1637251632/Sal-Salsa/Inicio/nuh9qecpe1fgt6onnfhh.jpg"
-              alt="First slide"
+              alt="Imagen uno del slider de inicio"
               id="anchoImagenCaId"
             />
           </div>
@@ -100,7 +100,7 @@ class Home extends React.Component {
             <img
               className="o-slide-inicio"
               src="https://res.cloudinary.com/iluiss/image/upload/v1637251633/Sal-Salsa/Inicio/jil3kmsvkeewvdwkd0ju.jpg"
-              alt="First slide"
+              alt="Imagen dos del slider de inicio"
               id="anchoImagenCaId"
             />
           </div>
@@ -112,7 +112,7 @@ class Home extends React.Component {
             <img
               className="o-slide-inicio"
               src="https://res.cloudinary.com/iluiss/image/upload/v1637251632/Sal-Salsa/Inicio/gwi0vnglrp6gj1c0mzae.jpg"
-              alt="First slide"
+              alt="Imagen tres del slider de inicio"
               id="anchoImagenCaId"
             />
           </div>

@@ -13,7 +13,7 @@ import SocialBar from "./SocialBar";
 const Layout = ({ children }) => (
   <div className="App">
     <Header />
-    <SocialBar></SocialBar>
+    <SocialBar />
     {children}
     <Footer />
   </div>
