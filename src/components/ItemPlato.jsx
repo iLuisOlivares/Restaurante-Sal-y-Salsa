@@ -29,7 +29,7 @@ const ItemPlato = ({
 }) => {
   const verifyRepeatData = async () => {
     // CHANGE THE userId BY THE LOGIN DATA
-    let userId = 20;
+    let userId = parseInt(localStorage.getItem("ui"));
     const response = await fetch(
       `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${userId}`
     );
@@ -106,7 +106,7 @@ const ItemPlato = ({
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
-          cliente_id: 20,
+          cliente_id: parseInt(localStorage.getItem("ui")),
           plato_id: idPlato,
           cantidad: amount,
         }),
