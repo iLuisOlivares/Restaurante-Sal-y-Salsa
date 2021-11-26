@@ -78,13 +78,10 @@ function ItemsCarrito({
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            // setCarrito(parseInt(localStorage.getItem("ui")));
+
             getPedidos(parseInt(localStorage.getItem("ui")));
             deleteAlert();
             calcularTotal();
-            // setTimeout(() => window.location.reload(false), 2000);
-            // setValor();
-            // Swal.fire("¡Eliminado!", "El plato ha sido eliminado.", "success");
           })
 
           .catch((err) => console.log(err));

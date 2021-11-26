@@ -3,6 +3,7 @@ import "./Home.css";
 import Testimonio from "../../components/Testimonio";
 import WhatComponent from "../../components/WhatComponent";
 import ServicesComponent from "../../components/ServicesComponent";
+import { Link } from "react-router-dom";
 
 /* 
   Container para mostrar el diseño de la página Home
@@ -163,9 +164,9 @@ class Home extends React.Component {
                 Ven a disfrutar de la mejor comida escuchando la mejor musica en
                 vivo de la ciudad
               </p>
-              <a href="/nosotros">
+              <Link to="/nosotros">
                 <button className="btn btn-l m-3">Conócenos</button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

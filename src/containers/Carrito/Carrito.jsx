@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { Link } from "react-router-dom";
-import ComponentePago from "../../components/ComponentePago";
+// import ComponentePago from "../../components/ComponentePago";
 import ContainerCarro from "../../assets/Elements/ContainerCarro";
 import { render } from "react-dom";
 // import ComponenteModal from "./ComponenteModal";
