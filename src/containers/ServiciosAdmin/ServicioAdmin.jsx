@@ -1,4 +1,5 @@
 import React from 'react'
+import Swal from 'sweetalert2';
 import ActualizarModal from './ActualizarModal';
 
 
@@ -22,7 +23,17 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
     method: 'DELETE'
     }
     );
-    return(resp.ok) ? 'Borrado':'No se elimino';
+    return(resp.ok) ? Swal.fire({
+      title: 'Borrado',
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    }): Swal.fire({
+      title: 'No se elimino',
+      icon: "error",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    });
 
   }
 
@@ -55,7 +66,8 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
       <ActualizarModal
       ids = {id}
       id = {identficador} 
-      nombre = {nombre}
+      nombre1 = {nombre}
+      ima = {foto}
       api = "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio"
       servicios = {servicios}
       setServicios = {setServicios}

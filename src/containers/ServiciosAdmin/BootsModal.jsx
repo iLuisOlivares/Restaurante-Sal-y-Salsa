@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "bootstrap";
 import InputModal from "./InputModal";
-
+import Swal from "sweetalert2";
 
 function BootsModal({servicios, setServicios, obtenerServicios}) {
     const presetCloud = 'jkby2ddk';
@@ -25,9 +25,20 @@ function BootsModal({servicios, setServicios, obtenerServicios}) {
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
-            alert('Por favor espere a que se suba la imagen')
+           
+          Swal.fire({
+            title: 'Por favor espere a que se suba la imagen',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          });
         }else if(!url || !nombre || !cargo){
-            alert('Por favor digite o suba todos los datos solicitados');
+          Swal.fire({
+            title: 'Por favor digite o suba todos los datos solicitados',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          });
         }else{
             console.log(url);
             const objeto = {
@@ -66,8 +77,13 @@ function BootsModal({servicios, setServicios, obtenerServicios}) {
 
             if(resp.ok){
                 const cloudResp = await resp.json();
-                alert('imagen subida');
-                console.log(cloudResp);
+                
+                Swal.fire({
+                  title: 'Imagen subida',
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Aceptar",
+                });
                 setUrl(cloudResp.url);
             }else{
                 throw await resp.json();

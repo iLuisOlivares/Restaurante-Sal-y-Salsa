@@ -2,12 +2,14 @@ import React from 'react'
 import { useState } from "react";
 import { Button } from "bootstrap";
 import InputModal from "./InputModal";
+import Swal from "sweetalert2";
 
-function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,api}) {
+
+function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion, ima ,api}) {
     const presetCloud = 'jkby2ddk';
     const apiCLoud = 'https://api.cloudinary.com/v1_1/iluiss/upload'
     
-    const [url,setUrl] = useState('');
+    const [url,setUrl] = useState(ima);
     const [nombre,setNombre] = useState(nombre1);
     const [cargo,setCargo] = useState(descripcion);
 
@@ -31,14 +33,34 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
         headers:{'Content-Type': 'application/json'}
         });
 
-        return(resp.ok) ? 'Actualizado' : 'No Actualizado'
+        return(resp.ok) ?   Swal.fire({
+          title: "Actualizado",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        })  :  Swal.fire({
+          title: "Error no eliminado",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        });
     };
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
-            alert('Por favor espere a que se suba la imagen')
+          Swal.fire({
+            title: "Espere que se suba la imagen",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          });
         }else if(!url || !nombre || !cargo){
-            alert('Por favor digite o suba todos los datos solicitados');
+          Swal.fire({
+            title: 'Por favor digite o suba todos los datos solicitados',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          });
         }else{
             console.log(url);
             const servicio = {
@@ -78,8 +100,12 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
 
             if(resp.ok){
                 const cloudResp = await resp.json();
-                alert('imagen subida');
-                console.log(cloudResp);
+                Swal.fire({
+                  title: "Espere que se suba la imagen",
+                  icon: "warning",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Aceptar",
+                });
                 setUrl(cloudResp.url);
             }else{
                 throw await resp.json();
@@ -129,11 +155,13 @@ function ActualizarModal({ids, id, servicios, setServicios,nombre1,descripcion,a
                   <InputModal
                   className="text-dark"
                   nombre = "Nombre:"
+                  defaulValue = {nombre}
                   setInput= {setNombre}
                   
                   ></InputModal>
                     <InputModal
                   nombre = "Descripcion:"
+                  defaulValue = {cargo}
                   setInput= {setCargo}
                   ></InputModal>
                   

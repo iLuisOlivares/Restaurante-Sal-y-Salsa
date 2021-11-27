@@ -64,7 +64,7 @@ function ItemReserva({reservas, cambiarReservas, reservaId,reserva, tipo, client
     
             <div className="p-3 container-botones d-flex justify-content-around ">
                 <a href={mailAccept} target="_blank" rel="noopener noreferrer" onClick={()=>onAccept()} className="mintam btn btn-success">Aceptar</a>
-                <a href={mailCancel} target="_blank" rel="noopener noreferrer" onClick={()=>onReject()}  className="mintam btn btn-danger">Rechazar</a>
+                <a href={mailCancel}  rel="noopener noreferrer" onClick={()=>onReject()}  className="mintam btn btn-danger">Rechazar</a>
             </div>
     
             </div>

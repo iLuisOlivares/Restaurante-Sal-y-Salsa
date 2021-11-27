@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "bootstrap";
 import InputModal from "./InputModal";
+import Swal from "sweetalert2";
 
 
 function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
@@ -9,27 +10,50 @@ function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
     const apiCLoud = 'https://api.cloudinary.com/v1_1/iluiss/upload'
     
     const [url,setUrl] = useState('');
-    const [nombre,setNombre] = useState('');
+    const [nombre,setNombre] = useState('as');
     const [cargo,setCargo] = useState('');
 
 
 
-    const postEmpleado = async (Empleado) => { await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/Empleado',{
+    const postEmpleado = async (Empleado) => { const resp = await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/Empleado',{
         method: 'Post',
         body: JSON.stringify(Empleado),
         headers:{
             'Content-Type': 'application/json'
         }
-        
-        
     });
-    obtenerEmpleados();};
+    obtenerEmpleados();
+    setUrl('');
+    setNombre('');
+    setCargo('');
+    return( resp.ok) ?   Swal.fire({
+      title: "Agregado",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    })  :  Swal.fire({
+      title: "Error no Agregado",
+      icon: "error",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    });
+    };
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
-            alert('Por favor espere a que se suba la imagen')
+          Swal.fire({
+            title: "Espere que se suba la imagen",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          })
         }else if(!url || !nombre || !cargo){
-            alert('Por favor digite o suba todos los datos solicitados');
+          Swal.fire({
+            title: 'Por favor digite o suba todos los datos solicitados',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          })
         }else{
             console.log(url);
             const empleado = {
@@ -39,6 +63,7 @@ function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
                 imagen: url.toString()
             }
             postEmpleado(empleado);
+      
             }
     }
     const obtenerInfo = (e) => {
@@ -65,13 +90,24 @@ function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
                 body:formData
             })
 
+            
+
             if(resp.ok){
                 const cloudResp = await resp.json();
-                alert('imagen subida');
-                console.log(cloudResp);
+                Swal.fire({
+                  title: "Imagen subida",
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Aceptar",
+                }) 
                 setUrl(cloudResp.url);
             }else{
-                throw await resp.json();
+              Swal.fire({
+                title: "Error no se subio",
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Aceptar",
+              }) 
             }
 
         }catch(error){
@@ -119,10 +155,12 @@ function BootsModal({empleados, setEmpleados, obtenerEmpleados}) {
                 <InputModal
                 nombre = "nombre:"
                 setInput= {setNombre}
+                defaultv = {nombre}
                 ></InputModal>
                   <InputModal
                 nombre = "Cargo:"
                 setInput= {setCargo}
+                defaultv = {cargo}
                 ></InputModal>
                 
                 <div className="mb-3">

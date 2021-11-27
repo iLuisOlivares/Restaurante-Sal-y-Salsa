@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputModal from '../ServiciosAdmin/InputModal';
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
-
+import Swal from 'sweetalert2';
 
 function UpdateModal({ids, id, platillos, setPlatillos,nombre1,descripcion,precio1,imagen1,api, funGetPlato}) {
 
@@ -16,9 +16,19 @@ function UpdateModal({ids, id, platillos, setPlatillos,nombre1,descripcion,preci
 
     const SubirEmpleado = () =>{
         if(url === 'Subiendo'){
-            alert('Por favor espere a que se suba la imagen')
+          Swal.fire({
+            title: 'Espere que se suba la imagen',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          })
         }else if(!url || !nombre || !cargo || !precio){
-            alert('Por favor digite o suba todos los datos solicitados');
+          Swal.fire({
+            title: 'Por favor digite o suba todos los datos solicitados',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          })
         }else{
             console.log(url);
             const plato = {
@@ -58,8 +68,12 @@ function UpdateModal({ids, id, platillos, setPlatillos,nombre1,descripcion,preci
 
             if(resp.ok){
                 const cloudResp = await resp.json();
-                alert('imagen subida');
-                console.log(cloudResp);
+                Swal.fire({
+                  title: 'Imagen subida',
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Aceptar",
+                })
                 setUrl(cloudResp.url);
             }else{
                 throw await resp.json();
@@ -87,7 +101,17 @@ function UpdateModal({ids, id, platillos, setPlatillos,nombre1,descripcion,preci
         headers:{'Content-Type': 'application/json'}
         });
         funGetPlato();
-        return(resp.ok) ? 'Actualizado' : 'No Actualizado'
+        return(resp.ok) ? Swal.fire({
+          title: 'Actualizado',
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        }) : Swal.fire({
+          title: 'No actualizado',
+          icon: "warning",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        })
     };
 
     

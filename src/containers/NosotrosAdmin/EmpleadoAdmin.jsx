@@ -1,5 +1,6 @@
 import React from "react";
 import ActualizarModal from "../ServiciosAdmin/ActualizarModal";
+import Swal from "sweetalert2";
 
 function EmpleadoAdmin({
   id,
@@ -32,7 +33,17 @@ function EmpleadoAdmin({
         method: "DELETE",
       }
     );
-    return resp.ok ? "Borrado" : "No se elimino";
+     return(resp.ok) ?   Swal.fire({
+      title: "Eliminado",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    })  : Swal.fire({
+      title: "Error no eliminado",
+      icon: "error",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    }) ;
   };
 
   return (
@@ -69,7 +80,8 @@ function EmpleadoAdmin({
           <ActualizarModal
             ids={id}
             id={identficador}
-            nombre={nombre}
+            ima={foto}
+            nombre1={nombre}
             api="https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
             servicios={empleados}
             setServicios={setEmpleados}

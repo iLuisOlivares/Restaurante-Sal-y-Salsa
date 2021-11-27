@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
+import Swal from 'sweetalert2';
 
 function ItemContactanos({id,nombre,correo ,asunto,descripcion,contactanos,cambiar}) {
 
@@ -23,7 +23,17 @@ function ItemContactanos({id,nombre,correo ,asunto,descripcion,contactanos,cambi
         method: 'DELETE'
         }
         );
-        return(resp.ok) ? 'Borrado':'No se elimino';
+        return(resp.ok) ? Swal.fire({
+          title: 'Borrado',
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        }): Swal.fire({
+          title: 'No se elimino',
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        });
     
       }
     return (

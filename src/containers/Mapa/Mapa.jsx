@@ -19,7 +19,7 @@ const servicios = [
     id: 2,
     tittle: "Nosotros",
     image:
-      "https://res.cloudinary.com/iluiss/image/upload/v1637342558/Sal-Salsa/Mapa/bcmbnp4yvffj8qgxjgs2.png",
+      "https://res.cloudinary.com/iluiss/image/upload/v1637967973/Sal-Salsa/Mapa/aom0ssowk5vesexm0kkt.png",
     link: "/nosotros",
   },
 

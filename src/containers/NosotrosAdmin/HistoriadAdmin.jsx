@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import "./styleNosotros.css"
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function HistoriadAdmin({nombre,foto,descripcion,historia}) {
 
@@ -22,7 +24,12 @@ function HistoriadAdmin({nombre,foto,descripcion,historia}) {
         headers:{'Content-Type': 'application/json'}
         });
 
-        return(resp.ok) ? 'Actualizado' : 'No Actualizado'
+        return(resp.ok) ?   Swal.fire({
+          title: "Actualizacion éxitoso",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar",
+        }) : 'No Actualizado'
 }
 
   const onClick = () => {
@@ -35,6 +42,7 @@ function HistoriadAdmin({nombre,foto,descripcion,historia}) {
       historia: historiaR
     }
     updateEstado(nosotrosO).then(console.log);
+  
   }
 
 

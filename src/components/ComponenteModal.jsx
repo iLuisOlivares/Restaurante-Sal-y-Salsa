@@ -155,7 +155,7 @@ function ComponenteModal({ precio, carrito, eliminarItem }) {
                   type="text"
                   className="form-control"
                   name="lol"
-                  value= {precio}
+                  defaultValue= {precio}
                   // disabled
                   style={{ display: "none" }}
                 />
