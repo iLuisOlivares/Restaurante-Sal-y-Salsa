@@ -15,7 +15,7 @@ function Nosotros() {
 
   const obtenerEmpleados = async () => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
+      "https://localhost:5001/api/empleado"
     );
     const resp = await data.json();
     console.log(resp);
@@ -24,7 +24,7 @@ function Nosotros() {
 
   const obtenerRestaurante = async (id) => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante/" +
+      "https://localhost:5001/api/restaurante/" +
         id
     );
     const resp = await data.json();

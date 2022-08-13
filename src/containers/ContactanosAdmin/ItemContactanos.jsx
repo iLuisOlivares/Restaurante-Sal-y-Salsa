@@ -19,7 +19,7 @@ function ItemContactanos({id,nombre,correo ,asunto,descripcion,contactanos,cambi
 
     
     const eliminarContactanos = async(id) =>{
-        const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos/"+ id,{
+        const resp = await fetch("https://localhost:5001/api/contactanos/"+ id,{
         method: 'DELETE'
         }
         );

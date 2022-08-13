@@ -25,7 +25,7 @@ class UpdateCarta extends Component {
 
   getPlatos = async () => {
     await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato`
+      `https://localhost:5001/api/plato`
     )
       .then((response) => response.json())
       .then((data) => this.setState({ platos: data }))
@@ -62,7 +62,7 @@ class UpdateCarta extends Component {
 
   async postPlato() {
     await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato",
+      "https://localhost:5001/api/plato",
       {
         method: "POST",
         mode: "cors", // no-cors, *cors, same-origin

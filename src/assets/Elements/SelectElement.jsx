@@ -22,13 +22,11 @@ function SelectElement({ estado, cambiarEstado }) {
         id="select-id"
         className="item-formulario form-select"
       >
-        <option value="7"> Reunión</option>
+        <option value="5"> Reunión</option>
         <option value="2"> Celebración de cumpleaños </option>
         <option value="1"> Aniversarios </option>
         <option value="3"> Fiestas infantiles </option>
-        <option value="4"> Declaraciones o propuestas </option>
-        <option value="5"> Despedidas </option>
-        <option value="6"> Cena con amigos </option>
+        <option value="4"> Cena con amigos </option>
       </select>
     </div>
   );

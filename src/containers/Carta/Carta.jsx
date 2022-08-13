@@ -26,7 +26,7 @@ class Carta extends Component {
 
   getPlatos = async () => {
     await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato`
+      `https://localhost:5001/api/plato`
     )
       .then((response) => response.json())
       .then((data) => this.setState({ carta: data }))

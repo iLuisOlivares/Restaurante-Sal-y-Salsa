@@ -14,7 +14,7 @@ function ContactanosAdmin() {
     
 
     const obtenerContactanos = async () =>{
-      const data = await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos');
+      const data = await fetch('https://localhost:5001/api/contactanos');
       const resp = await data.json();
       console.log(resp);
       setContactanos(resp);

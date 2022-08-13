@@ -60,7 +60,7 @@ function ContactUs() {
 
   const postContactanos = async (conctactanos) => {
     await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/contactanos",
+      "https://localhost:5001/api/contactanos",
       {
         method: "Post",
         body: JSON.stringify(conctactanos),

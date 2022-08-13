@@ -25,7 +25,7 @@ const Reserva = () => {
   const horanow = hoy.getHours() + ":" + hoy.getMinutes();
 
   const [select, cambiarSelect] = useState({
-    campo: 7,
+    campo: 5,
     valido: "true",
   });
   const [asunto, cambiarAsunto] = useState({ campo: "", valido: null });
@@ -72,7 +72,7 @@ const Reserva = () => {
 
   const postReservas = async (reserva) => {
     await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva",
+      "https://localhost:5001/api/reserva",
       {
         method: "POST",
         mode: "cors", // no-cors, *cors, same-origin
@@ -112,7 +112,7 @@ const Reserva = () => {
         const fechaString = fechaO.toString();
 
         const reservaO = {
-          cliente_id: 2,
+          cliente_id: 14,
           servicio_id: parseInt(select.campo),
           estado: "pendiente",
           fecha: fechaString,

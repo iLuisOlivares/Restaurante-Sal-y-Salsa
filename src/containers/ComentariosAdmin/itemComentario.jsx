@@ -23,7 +23,7 @@ function ItemComentario({idComentario,cliente,nombre,comentario ,fecha,respuesta
 
     
     const eliminarComentarios = async(id) =>{
-        const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/comentario/"+ id,{
+        const resp = await fetch("https://localhost:5001/api/comentario/"+ id,{
         method: 'DELETE'
         }
         );

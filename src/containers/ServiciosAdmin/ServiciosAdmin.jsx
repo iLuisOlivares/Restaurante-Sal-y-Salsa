@@ -14,7 +14,7 @@ function NosotrosAdmin() {
 
   const obtenerServicios = async () => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio"
+      "https://localhost:5001/api/servicio"
     );
     const resp = await data.json();
     console.log(resp);

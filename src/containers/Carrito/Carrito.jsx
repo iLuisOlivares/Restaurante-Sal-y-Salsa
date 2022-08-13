@@ -36,7 +36,7 @@ class Carrito extends Component {
 
   getPedidos = async (id) => {
     await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`
+      `https://localhost:5001/api/pedido/${id}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -52,7 +52,7 @@ class Carrito extends Component {
 
   deletePedidos = async (id) => {
      await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${id}`,
+      `https://localhost:5001/api/pedido/${id}`,
       {
         method: "DELETE",
         mode: "cors",

@@ -30,7 +30,7 @@ function ItemPlato({
     }).then(async (result) => {
       if (result.isConfirmed) {
         await fetch(
-          "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato/" +
+          "https://localhost:5001/api/plato/" +
             id,
           {
             method: "DELETE",
@@ -73,7 +73,7 @@ function ItemPlato({
             imagen1={imagen}
             platillos={platillos}
             funGetPlato={funGetPlato}
-            api="https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/plato"
+            api="https://localhost:5001/api/plato"
           />
           <button
             onClick={() => {

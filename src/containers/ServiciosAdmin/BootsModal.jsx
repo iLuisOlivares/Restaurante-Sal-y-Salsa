@@ -14,7 +14,7 @@ function BootsModal({servicios, setServicios, obtenerServicios}) {
 
 
 
-    const postEmpleado = async (servicio) => { await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio',{
+    const postEmpleado = async (servicio) => { await fetch('https://localhost:5001/api/servicio',{
         method: 'Post',
         body: JSON.stringify(servicio),
         headers:{

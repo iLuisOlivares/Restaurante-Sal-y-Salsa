@@ -19,7 +19,7 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
     };
 
   const eliminarEmpleado = async(id) =>{
-    const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio/"+ id,{
+    const resp = await fetch("https://localhost:5001/api/servicio/"+ id,{
     method: 'DELETE'
     }
     );
@@ -50,10 +50,10 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
     //       </div>
     //     </div>
     //   </div>
-    <div className="m-3 card my-3" style={{maxWidth: "600px"}}>
+    <div className="m-3 p-0 card my-3" style={{maxWidth: "600px"}}>
   <div className="row g-0">
-    <div className="col-md-3">
-      <img style={{objectFit:"cover", width:"126px", height:"126px"}} src={foto} className="img-fluid rounded-start" alt="..."/>
+    <div className="col-md-4">
+      <img style={{objectFit:"cover", width:"226px", height:"156px"}} src={foto} className="img-fluid rounded" alt="..."/>
     </div>
     <div className="col-md-8">
       <div className="card-body">
@@ -61,20 +61,21 @@ function ServicioAdmin({id, nombre,foto,descripcion,cargo,obtenerEmpleados,servi
         <p className="card-text">{cargo}</p>
         <p className="card-text"><small className="text-muted">{descripcion}</small></p>
       </div>
-    </div>
-    <div  className="d-flex justify-content-end">
-      <ActualizarModal
+      <div  className="d-flex justify-content-end">
+    <ActualizarModal
       ids = {id}
       id = {identficador} 
       nombre1 = {nombre}
       ima = {foto}
-      api = "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/servicio"
+      api = "https://localhost:5001/api/servicio"
       servicios = {servicios}
       setServicios = {setServicios}
       descripcion = {descripcion} ></ActualizarModal>
     <button  onClick={()=>{eliminarItem(id)}} className="m-1 text-light btn btn-danger ">Eliminar</button>
     </div>
 
+    </div>
+    
   </div>
   
 </div>

@@ -15,7 +15,7 @@ function ReservasAdmin() {
 
   const obtenerReservas = async () => {
     const data = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva"
+      "https://localhost:5001/api/reserva"
     );
     const resp = await data.json();
     console.log(resp);

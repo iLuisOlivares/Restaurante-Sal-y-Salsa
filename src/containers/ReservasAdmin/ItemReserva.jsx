@@ -10,7 +10,7 @@ function ItemReserva({reservas, cambiarReservas, reservaId,reserva, tipo, client
     
     const updateEstado = async(object)=>{
 
-        const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/reserva",{
+        const resp = await fetch("https://localhost:5001/api/reserva",{
             method: 'PUT',
             body: JSON.stringify(object),
             headers:{'Content-Type': 'application/json'}

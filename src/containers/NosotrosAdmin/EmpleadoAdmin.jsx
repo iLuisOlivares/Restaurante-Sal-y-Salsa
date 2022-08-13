@@ -27,7 +27,7 @@ function EmpleadoAdmin({
 
   const eliminarEmpleado = async (id) => {
     const resp = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado/" +
+      "https://localhost:5001/api/empleado/" +
         id,
       {
         method: "DELETE",
@@ -82,7 +82,7 @@ function EmpleadoAdmin({
             id={identficador}
             ima={foto}
             nombre1={nombre}
-            api="https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/empleado"
+            api="https://localhost:5001/api/empleado"
             servicios={empleados}
             setServicios={setEmpleados}
             descripcion={descripcion}

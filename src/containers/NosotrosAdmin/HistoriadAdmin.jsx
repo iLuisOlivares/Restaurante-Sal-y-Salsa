@@ -18,7 +18,7 @@ function HistoriadAdmin({nombre,foto,descripcion,historia}) {
 
   const updateEstado = async(object)=>{
 
-    const resp = await fetch("https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/restaurante",{
+    const resp = await fetch("https://localhost:5001/api/restaurante",{
         method: 'PUT',
         body: JSON.stringify(object),
         headers:{'Content-Type': 'application/json'}

@@ -16,7 +16,7 @@ function ComentariosAdmin() {
     
 
     const obtenerComentarios = async () =>{
-      const data = await fetch('https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/comentario');
+      const data = await fetch('https://localhost:5001/api/comentario');
       const resp = await data.json();
       console.log(resp);
       cambiarRespuetas(resp)

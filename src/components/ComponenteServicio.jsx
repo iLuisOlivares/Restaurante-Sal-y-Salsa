@@ -6,7 +6,7 @@ function ComponenteServicio({nombre,leyenda,imagen}) {
       
          
             <div  className="bg-dark card col-4 rounded-1" style={{width: "18rem"}}>
-              <img style={{width:"286px", height:"286px"}} src={imagen} className="card-img-top" alt="..."/>
+              <img style={{width:"286px", height:"286px", objectFit:"cover"}} src={imagen} className="card-img-top" alt="..."/>
               <div style={{height:"145px"}} className="card-body">
                 <h3 className="text-light card-text d-flex justify-content-center">{nombre}</h3>
                 <p className="text-secondary card-text d-flex text-center fw-light justify-content-center">{leyenda}</p>

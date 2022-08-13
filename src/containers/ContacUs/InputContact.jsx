@@ -34,7 +34,7 @@ function InputContact({
 
   const postComentarios = async (comentario) => {
     await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/comentario",
+      "https://localhost:5001/api/comentario",
       {
         method: "Post",
         body: JSON.stringify(comentario),
@@ -42,7 +42,7 @@ function InputContact({
           "Content-Type": "application/json",
         },
       }
-    );
+    ).then(response=> console.log(response));
     obtenerComentarios();
   };
 
@@ -67,7 +67,7 @@ function InputContact({
       fecha: fecha,
       cliente_id: parseInt(localStorage.getItem("ui")),
     };
-
+    console.log(nuevoComentario)
     postComentarios(nuevoComentario);
   };
 

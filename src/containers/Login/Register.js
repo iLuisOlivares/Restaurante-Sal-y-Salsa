@@ -49,12 +49,12 @@ export default class Register extends Component {
             nombre_usuario: this.state.userName,
             contrasena: this.state.userPassword,
             nombre_completo: this.state.completedName,
-            correo: this.state.email,
+            correo: this.state.email
           }),
         };
 
         await fetch(
-          `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/cliente/`,
+          `https://localhost:5001/api/cliente/`,
           config
         )
           .then((response) => response.json())

@@ -1,122 +1,129 @@
-.textitulos{
+.textitulos {
     resize: none;
     width: 200px;
     height: 40px;
     font-size: 25px;
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
-.textareas{
+.rounded {
+    border-radius: 10px;
+}
+
+.textareas {
     resize: none;
-     width: 500px;
-    height:150px;
-    overflow:visible;
+    width: 500px;
+    height: 150px;
+    overflow: visible;
 
 }
 
-.textareas2{
+.textareas2 {
     resize: none;
-     width: 618px;
-    height:50px;
-    overflow:visible;
+    width: 618px;
+    height: 50px;
+    overflow: visible;
 
 }
 
 @media (max-width: 1050px) {
-    .textitulos{
-    overflow: auto;
+    .textitulos {
+        overflow: auto;
         resize: none;
         width: 300px;
         height: 50px;
     }
-    .textareas{
+
+    .textareas {
         margin: 5px;
         resize: none;
         width: 400px;
-        height:150px;
+        height: 150px;
     }
 
-    .textareas2{
+    .textareas2 {
         resize: none;
-         width: 400px;
-        height:50px;
-        overflow:visible;
-    
+        width: 400px;
+        height: 50px;
+        overflow: visible;
+
     }
-    
-  }
+
+}
 
 @media (max-width: 900px) {
-    .textitulos{
-    overflow: auto;
+    .textitulos {
+        overflow: auto;
         resize: none;
         width: 400px;
         height: 50px;
     }
-    .textareas{
+
+    .textareas {
         margin: 5px;
         resize: none;
         width: 500px;
-        height:150px;
+        height: 150px;
     }
 
-    .textareas2{
+    .textareas2 {
         resize: none;
-         width: 600px;
-        height:50px;
-        overflow:visible;
-    
+        width: 600px;
+        height: 50px;
+        overflow: visible;
+
     }
-    
-  }
+
+}
+
 @media (max-width: 600px) {
-    .textitulos{
-    overflow: auto;
+    .textitulos {
+        overflow: auto;
         resize: none;
         width: 200px;
         height: 50px;
     }
-    .textareas{
+
+    .textareas {
         margin: 5px;
         resize: none;
         width: 300px;
-        height:150px;
+        height: 150px;
     }
 
-    .textareas2{
+    .textareas2 {
         resize: none;
-         width: 318px;
-        height:50px;
-        overflow:visible;
-    
-    }
-    
-  }
+        width: 318px;
+        height: 50px;
+        overflow: visible;
 
-  
+    }
+
+}
+
+
 @media (max-width: 390px) {
-    .textitulos{
-    overflow: auto;
+    .textitulos {
+        overflow: auto;
         resize: none;
         width: 300px;
         height: 50px;
     }
-    .textareas{
+
+    .textareas {
         margin: 5px;
         resize: none;
         width: 300px;
-        height:150px;
+        height: 150px;
     }
 
-    .textareas2{
+    .textareas2 {
         resize: none;
-         width: 318px;
-        height:50px;
-        overflow:visible;
-    
-    }
-    
-  }
+        width: 318px;
+        height: 50px;
+        overflow: visible;
 
-  
+    }
+
+}

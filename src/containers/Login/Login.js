@@ -44,7 +44,7 @@ export default function Login() {
       // console.log("la contraseña es:", password);
       // console.log("la usuario es:", userName);
       fetch(
-        `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/cliente/${userName}`
+        `https://localhost:5001/api/cliente/${userName}`
       )
         .then((response) => response.json())
         .then((data) => {
