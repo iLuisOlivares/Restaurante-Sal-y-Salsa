@@ -31,7 +31,7 @@ const ItemPlato = ({
     // CHANGE THE userId BY THE LOGIN DATA
     let userId = parseInt(localStorage.getItem("ui"));
     const response = await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido/${userId}`
+      `https://localhost:5001/api/pedido/${userId}`
     );
     const resp = await response.json();
     console.log(resp);
@@ -62,7 +62,7 @@ const ItemPlato = ({
     let amount = parseInt(document.getElementById("id_cantidad").value);
 
     const response = await fetch(
-      `https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido`,
+      `https://localhost:5001/api/pedido`,
       {
         method: "PUT",
         body: JSON.stringify({
@@ -94,7 +94,7 @@ const ItemPlato = ({
 
     // CHANGE THE userId BY THE LOGIN DATA
     const response = await fetch(
-      "https://restaurante-sal-salsa20211123190304.azurewebsites.net/api/pedido",
+      "https://localhost:5001/api/pedido",
       {
         method: "POST",
         mode: "cors",

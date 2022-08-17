@@ -77,7 +77,7 @@ export default function Login() {
             } else {
               MySwal.fire({
                 icon: "error",
-                title: "La contraseña es incorrecta",
+                title: "Oops! Datos incorrectos",
                 confirmButtonColor: "#3085d6",
               });
             }

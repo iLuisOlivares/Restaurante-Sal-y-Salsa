@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import CheckElement from "../../assets/Elements/CheckElement";
 import SelectElement from "../../assets/Elements/SelectElement";
 import InputNumber from "../../assets/Elements/InputNumber";
@@ -23,6 +23,14 @@ const Reserva = () => {
   const hoy = new Date();
   const minFecha = hoy.toISOString().split("T")[0];
   const horanow = hoy.getHours() + ":" + hoy.getMinutes();
+  const [id, setId] = useState("");
+
+  useEffect(() => {
+    const ui = JSON.parse(localStorage.getItem('ui'));
+    if (ui) {
+    setId(ui);
+    }
+  }, []);
 
   const [select, cambiarSelect] = useState({
     campo: 5,
@@ -112,7 +120,7 @@ const Reserva = () => {
         const fechaString = fechaO.toString();
 
         const reservaO = {
-          cliente_id: 14,
+          cliente_id:  id,
           servicio_id: parseInt(select.campo),
           estado: "pendiente",
           fecha: fechaString,
@@ -123,7 +131,6 @@ const Reserva = () => {
           nombre_referencia: nombre.campo,
         };
 
-        console.log(reservaO);
         postReservas(reservaO);
 
         emailjs
