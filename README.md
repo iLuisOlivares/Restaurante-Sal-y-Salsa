@@ -23,3 +23,6 @@ npm install
 * **Luis Sebastian Olivares Puello** - *Desarollador* - [iluisolivares](https://github.com/iluisolivares)
 * **Gregson Murcia Castro** - *Desarollador* - [GregoryInnovo](https://github.com/GregoryInnovo)
 
+
+
+Copyright [2022]
